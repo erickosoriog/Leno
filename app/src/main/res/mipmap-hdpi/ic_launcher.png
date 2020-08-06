@@ -1,0 +1,135 @@
+package app.escolary.notes
+
+import android.annotation.SuppressLint
+import android.content.Intent
+import android.os.Bundle
+import android.text.Editable
+import android.text.TextWatcher
+import android.view.WindowManager
+import android.widget.*
+import androidx.appcompat.app.AppCompatActivity
+import app.escolary.NavigationDrawer
+import app.escolary.R
+import com.google.android.material.bottomsheet.BottomSheetDialog
+import io.realm.Realm
+import kotlinx.android.synthetic.main.activity_add_notes_view.*
+
+class AddNotesView : AppCompatActivity() {
+
+    private  lateinit var  titleNote : EditText
+    private  lateinit var  note : EditText
+    private  lateinit var  save : Button
+    private  lateinit var  realm : Realm
+    private lateinit var   noteInput : EditText
+    private lateinit var   noteTitle : EditText
+    private lateinit var   switch: Switch
+
+    @SuppressLint("InflateParams")
+    override fun onCreate(savedInstanceState: Bundle?) {
+
+        setTheme(R.style.white_status_bar)
+
+        super.onCreate(savedInstanceState)
+        setContentView(R.layout.activity_add_notes_view)
+
+        // keyboard is up
+
+        window.setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_RESIZE)
+
+
+
+
+        // notes Function
+
+
+        noteInput = findViewById(R.id.InputNote)
+        noteTitle = findViewById(R.id.InputNotesTittle)
+        switch = findViewById(R.id.switch1)
+        save = findViewById(R.id.save_note)
+
+        switch.setOnCheckedChangeListener { _, _ ->
+            noteInput.isEnabled = switch1.isChecked
+            noteTitle.isEnabled = switch1.isChecked
+        }
+
+        // Title note
+
+        noteTitle.addTextChangedListener(object : TextWatcher{
+            override fun afterTextChanged(s: Editable?) {
+
+            }
+
+            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
+
+            }
+
+            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+                switch.isChecked = true
+            }
+
+
+        })
+
+
+        // Description note
+
+        noteInput.addTextChangedListener ( object : TextWatcher {
+            override fun afterTextChanged(s: Editable?) {
+
+            }
+
+            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
+
+
+            }
+
+            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+                switch.isChecked = true
+                save.isEnabled = s.toString().trim{ it <= ' ' }.isNotEmpty()
+            }
+
+        })
+
+
+        // notes menu
+
+
+        add_more_note.setOnClickListener {
+            val dialog = BottomSheetDialog(this)
+            val view = layoutInflater.inflate(R.layout.add_button_menu_notes, null)
+            dialog.setContentView(view)
+            dialog.show()
+        }
+
+
+        // init views
+
+
+        realm = Realm.getDefaultInstance()
+        titleNote = findViewById(R.id.InputNotesTittle)
+        note = findViewById(R.id.InputNote)
+
+        // save Notes
+
+
+
+        save.setOnClickListener {
+            if (save.isEnabled){
+                addnotesDB ()
+            }
+        }
+    }
+
+    private fun  addnotesDB () {
+
+        try {
+
+            realm.beginTransaction()
+
+            val currentIdNumber : Number? = realm.where(Notes::class.java).max("id")
+            val nextID :Int
+
+            nextID = if (currentIdNumber == null) {
+                1
+            } else {
+   
