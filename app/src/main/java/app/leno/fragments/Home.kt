@@ -16,7 +16,7 @@ import kotlinx.android.synthetic.main.home_and_fav.*
 
 private const val ARG_PARAM1 = "param1"
 private const val ARG_PARAM2 = "param2"
-private lateinit var adater: MainAdapter
+private lateinit var adapter: MainAdapter
 
 
 class Home : Fragment() {
@@ -44,20 +44,20 @@ class Home : Fragment() {
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
 
-        adater = MainAdapter()
+        adapter = MainAdapter()
         rv.layoutManager = LinearLayoutManager(activity)
-        rv.adapter = adater
+        rv.adapter = adapter
         observerData()
     }
 
     private fun observerData() {
         viewModel.fetchUserData().observe(viewLifecycleOwner, Observer {
-            adater.setListData(it)
+            adapter.setListData(it)
             if (it.size > 0) {
                 box.visibility = View.GONE
                 text_home_fragment.visibility = View.GONE
             }
-            adater.notifyDataSetChanged()
+            adapter.notifyDataSetChanged()
         })
     }
 

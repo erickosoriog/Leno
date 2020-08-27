@@ -42,7 +42,6 @@
     <string name="login_with_google">Login with google</string>
     <string name="forgot_password">forgot password?</string>
     <string name="user_name">User name</string>
-    <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="Calendar">Calendar</string>
 
     <!-- Preference Titles -->

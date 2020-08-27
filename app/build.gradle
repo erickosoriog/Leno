@@ -67,7 +67,7 @@ dependencies {
     //noinspection GradleDependency
     implementation "com.ismaeldivita.chipnavigation:chip-navigation-bar:$nav_chipVersion"
 
-    // material desing
+    // material design
     
     implementation 'com.google.android.material:material:1.2.0'
 
