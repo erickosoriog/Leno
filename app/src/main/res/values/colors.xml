@@ -2,13 +2,11 @@
 <resources>
     <color name="colorPrimary">#6200EE</color>
     <color name="colorPrimaryDark">#3700B3</color>
-    <color name="colorAccent">#03DAC5</color>
     <color name="white">#ffffff</color>
-    <color name="black">#000000</color>
+    <color name="black">#DE000000</color>
     <color name="blackgray">#303030</color>
     <color name="grey">#666666</color>
     <color name="light">#D8D7D7</color>
     <color name="white_light">#EFEFEF</color>
     <color name="white_smoke">#F5F5F5</color>
-    <color name="bottomSheet">#33000000</color>
 </resources>

@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "649848337678",
+    "firebase_url": "https://leno-df8e3.firebaseio.com",
+    "project_id": "leno-df8e3",
+    "storage_bucket": "leno-df8e3.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:649848337678:android:757aa9215b7c101db8935f",
+        "android_client_info": {
+          "package_name": "app.leno"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "649848337678-s2665ven2omu2t68bl5f2kmj9t6ualjp.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "app.leno",
+            "certificate_hash": "0a140b472b980d34143a84e21fb96568cf933296"
+          }
+        },
+        {
+          "client_id": "649848337678-uvkpa1ho0akfat0l6e2ollnc3vgcej6o.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB-PVFB52cxxKCYPHd1CsGHw-BLBZ4vfiI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "649848337678-uvkpa1ho0akfat0l6e2ollnc3vgcej6o.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

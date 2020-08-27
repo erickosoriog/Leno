@@ -2,34 +2,37 @@
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/nav_graph"
     app:startDestination="@id/Home"
     tools:ignore="UnusedNavigation">
 
     <fragment
         android:id="@+id/Home"
-        android:name="app.leno.Fragments.HomeFragment"
+        android:name="app.leno.fragments.Home"
         android:label="fragment_home"
-        tools:layout="@layout/fragment_home" >
+        tools:layout="@layout/fragment_home">
+
     </fragment>
+
 
     <fragment
         android:id="@+id/Favorite"
-        android:name="app.leno.Fragments.Favorites"
+        android:name="app.leno.fragments.Favorite"
         android:label="fragment_favorites"
-        tools:layout="@layout/fragment_favorites" >
+        tools:layout="@layout/fragment_favorites">
+
     </fragment>
 
     <fragment
-        android:id="@+id/Search"
-        android:name="app.leno.Fragments.Search"
+        android:id="@+id/Calendar"
+        android:name="app.leno.fragments.Calendar"
         android:label="fragment_search"
-        tools:layout="@layout/fragment_search" >
+        tools:layout="@layout/fragment_calendar">
+
     </fragment>
 
     <fragment
         android:id="@+id/Profile"
-        android:name="app.leno.Fragments.Profile"
+        android:name="app.leno.fragments.Profile"
         android:label="fragment_profile"
         tools:layout="@layout/fragment_profile" />
 </navigation>

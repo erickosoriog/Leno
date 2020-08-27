@@ -2,62 +2,25 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/drawer_layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity"
-    android:background="@color/white_smoke">
+    tools:context=".ui.MainActivity">
 
+    <include
+        android:id="@+id/app_bar_main"
+        layout="@layout/app_bar_main"
+        app:layout_constraintBottom_toTopOf="@+id/nav_view"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="UnknownIdInLayout" />
 
-    <fragment
-        android:id="@+id/nav_host_fragment"
-        android:name="androidx.navigation.fragment.NavHostFragment"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        app:defaultNavHost="true"
-        app:navGraph="@navigation/nav_graph"/>
+    <include
+        layout="@layout/bottom_bar_main"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/app_bar_main"
+        app:layout_constraintTop_toTopOf="@+id/app_bar_main" />
 
-    <com.ismaeldivita.chipnavigation.ChipNavigationBar
-        android:id="@+id/nav_view"
-        android:layout_width="match_parent"
-        android:layout_height="70dp"
-        android:layout_gravity="bottom"
-        android:background="@color/white"
-        android:elevation="16dp"
-        android:gravity="center"
-        android:padding="8dp"
-        app:cnb_menuResource="@menu/bottom_navigation_menu"
-        app:layout_constraintBottom_toBottomOf="parent" />
-
-
-    <androidx.appcompat.widget.Toolbar
-        android:id="@+id/toolbar"
-        android:layout_width="match_parent"
-        android:layout_height="70dp"
-        android:elevation="1dp"
-        app:titleTextColor="@color/black"
-        android:minHeight="?attr/actionBarSize"
-        android:paddingTop="12dp"
-        android:theme="?attr/actionBarTheme"
-        app:menu="@menu/toolbar_navigation_menu"
-        app:title="Home"
-        tools:ignore="MissingConstraints"
-        app:titleTextAppearance="@style/Roboto_toolbar"/>
-
-    <androidx.coordinatorlayout.widget.CoordinatorLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
-
-        <com.google.android.material.floatingactionbutton.FloatingActionButton
-            android:id="@+id/fab"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="bottom|end"
-            android:layout_marginEnd="16dp"
-            android:layout_marginBottom="90dp"
-            android:backgroundTint="@color/colorPrimary"
-            android:src="@drawable/ic_add" />
-
-    </androidx.coordinatorlayout.widget.CoordinatorLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

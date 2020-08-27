@@ -1,6 +1,11 @@
 <resources>
     <string name="app_name">Leno</string>
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+
+    // Authentication
+
+    <string name="welcome_auth">¡Welcome To Leno!</string>
+    <string name="login">login</string>
+    <string name="register">register</string>
 
     // Bottom navigation bar item titles
 
@@ -10,19 +15,40 @@
     <string name="Profile" type="menu">Profile</string>
 
     <string name="home_fragment" type="fragment">Tap + to create a note</string>
+    <string name="account_profile">Account</string>
+    <string name="email_profile">Example@gmail.com</string>
+    <string name="appearance_profile">Appearance</string>
+    <string name="notifications_profile">Notifications</string>
+    <string name="productivity_profile">Productivity</string>
+    <string name="support_profile">Support</string>
+    <string name="about_us_profile">About us</string>
+    <string name="log_out_profile">Log out</string>
+    <string name="untitled_note">Untitled note</string>
+    <string name="note_input">Click here for type note</string>
+    <string name="created_date">created</string>
+    <string name="title">Title</string>
+    <string name="date">Date</string>
+    <string name="folder">Folder</string>
+    <string name="note_fab_bottom">Note</string>
+    <string name="new_bottomSheet">New</string>
+    <string name="settings">Settings</string>
+    <string name="title_folder">title folder</string>
+    <string name="forgot_msg">Please enter the email with which you registered and want to recover your password, the instructions will be sent to the email.</string>
+    <string name="email">Email</string>
+    <string name="reset_password">Reset password</string>
+    <string name="welcome_back">¡Welcome Back!</string>
+    <string name="password">Password</string>
+    <string name="or">or</string>
+    <string name="login_with_google">Login with google</string>
+    <string name="forgot_password">forgot password?</string>
+    <string name="user_name">User name</string>
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="Calendar">Calendar</string>
+
     <!-- Preference Titles -->
-    <string name="messages_header">Messages</string>
-    <string name="sync_header">Sync</string>
 
     <!-- Messages Preferences -->
-    <string name="signature_title">Your signature</string>
-    <string name="reply_title">Default reply action</string>
 
     <!-- Sync Preferences -->
-    <string name="sync_title">Sync email periodically</string>
-    <string name="attachment_title">Download incoming attachments</string>
-    <string name="attachment_summary_on">Automatically download attachments for incoming emails
-    </string>
-    <string name="attachment_summary_off">Only download attachments when manually requested</string>
 
 </resources>

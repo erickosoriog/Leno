@@ -14,10 +14,12 @@
         android:icon="@drawable/ic_favorite"
         android:title="@string/Favorite"
         app:cnb_iconColor="@color/colorPrimary" />
+
+
     <item
-        android:id="@+id/search"
-        android:icon="@drawable/ic_search"
-        android:title="@string/Search"
+        android:id="@+id/calendar"
+        android:icon="@drawable/ic_outline_date_range"
+        android:title="@string/Calendar"
         app:cnb_iconColor="@color/colorPrimary" />
     <item
         android:id="@+id/profile"
