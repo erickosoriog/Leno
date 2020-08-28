@@ -9,5 +9,6 @@
     <color name="light">#D8D7D7</color>
     <color name="white_light">#EFEFEF</color>
     <color name="white_smoke">#F5F5F5</color>
+    <color name="vector_background">#F5F5F5</color>
 
 </resources>

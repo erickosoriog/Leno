@@ -14,6 +14,7 @@ import app.leno.ui.Welcome
 import com.google.firebase.auth.FirebaseAuth
 import kotlinx.android.synthetic.main.fragment_profile.*
 
+
 private lateinit var auth: FirebaseAuth
 private const val ARG_PARAM1 = "param1"
 private const val ARG_PARAM2 = "param2"
@@ -52,7 +53,7 @@ class Profile : Fragment() {
         }
     }
 
-    @RequiresApi(Build.VERSION_CODES.M)
+    @RequiresApi(Build.VERSION_CODES.O)
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -60,14 +61,21 @@ class Profile : Fragment() {
 
         activity?.window?.statusBarColor = resources.getColor(R.color.colorPrimary, activity?.theme)
 
+        activity?.window?.decorView?.systemUiVisibility =
+            0 or View.SYSTEM_UI_FLAG_LIGHT_NAVIGATION_BAR
+
+
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_profile, container, false)
+
     }
 
-    @RequiresApi(Build.VERSION_CODES.M)
+    @RequiresApi(Build.VERSION_CODES.O)
     override fun onDestroyView() {
         super.onDestroyView()
         activity?.window?.statusBarColor = resources.getColor(R.color.white, activity?.theme)
+        activity?.window?.decorView?.systemUiVisibility =
+            View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR or View.SYSTEM_UI_FLAG_LIGHT_NAVIGATION_BAR
 
     }
 
