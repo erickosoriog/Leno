@@ -33,7 +33,6 @@ class NoteLayout : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_note_layout)
 
-
         auth = FirebaseAuth.getInstance()
         db = FirebaseFirestore.getInstance()
 

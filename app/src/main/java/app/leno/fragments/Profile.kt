@@ -60,7 +60,6 @@ class Profile : Fragment() {
 
         activity?.window?.statusBarColor = resources.getColor(R.color.colorPrimary, activity?.theme)
 
-
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_profile, container, false)
     }
