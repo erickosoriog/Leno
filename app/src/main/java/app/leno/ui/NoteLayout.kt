@@ -14,6 +14,7 @@ import com.google.firebase.Timestamp
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 import kotlinx.android.synthetic.main.activity_note_layout.*
+import kotlinx.android.synthetic.main.app_bar_note.*
 import java.text.DateFormat
 import java.util.*
 import kotlin.collections.HashMap
@@ -32,6 +33,7 @@ class NoteLayout : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_note_layout)
+
 
         auth = FirebaseAuth.getInstance()
         db = FirebaseFirestore.getInstance()
@@ -85,4 +87,5 @@ class NoteLayout : AppCompatActivity() {
             }
 
     }
+
 }

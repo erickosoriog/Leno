@@ -11,6 +11,7 @@ import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
 import androidx.navigation.findNavController
+import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.navigateUp
 import app.leno.R
@@ -32,6 +33,7 @@ class MainActivity : AppCompatActivity(), ChipNavigationBar.OnItemSelectedListen
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+
 
         updateUI()
 
@@ -106,7 +108,10 @@ class MainActivity : AppCompatActivity(), ChipNavigationBar.OnItemSelectedListen
     @RequiresApi(Build.VERSION_CODES.M)
     override fun onItemSelected(id: Int) {
 
-        val navController = findNavController(R.id.nav_host_fragment)
+        val navHostFragment =
+            supportFragmentManager.findFragmentById(R.id.nav_host_fragment) as NavHostFragment
+        val navController = navHostFragment.navController
+
         val fab: FloatingActionButton = findViewById(R.id.fab)
 
         when (id) {

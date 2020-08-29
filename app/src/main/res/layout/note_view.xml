@@ -9,7 +9,7 @@
         android:id="@+id/note_img"
         android:layout_width="50dp"
         android:layout_height="50dp"
-        android:layout_margin="8dp"
+        android:layout_margin="16dp"
         android:src="@drawable/ic_notes"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="@null"
