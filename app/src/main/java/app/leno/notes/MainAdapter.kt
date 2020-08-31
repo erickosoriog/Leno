@@ -5,8 +5,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import app.leno.R
-import kotlinx.android.synthetic.main.folder_view.view.*
-import kotlinx.android.synthetic.main.note_view.view.*
+import kotlinx.android.synthetic.main.items_view_text.view.*
 
 private const val note_type: Int = 0
 private const val folder_type: Int = 1
@@ -20,15 +19,15 @@ class MainAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
     class MainViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         fun bindView(user: DataNote) {
-            itemView.title_folder.text = user.title
-            itemView.date_folder.text = user.date
+            itemView.title_items.text = user.title
+            itemView.date_items.text = user.date
         }
     }
 
     class NoteViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         fun bindView(user: DataNote) {
-            itemView.title_note.text = user.title
-            itemView.date_note.text = user.date
+            itemView.title_items.text = user.title
+            itemView.date_items.text = user.date
         }
     }
 

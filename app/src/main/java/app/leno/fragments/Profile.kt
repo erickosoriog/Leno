@@ -36,7 +36,7 @@ class Profile : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         LogOut.setOnClickListener {
-            val alertDialogBuilder = AlertDialog.Builder(activity)
+            val alertDialogBuilder = AlertDialog.Builder(activity, R.style.AlertDialogTheme)
             alertDialogBuilder.setTitle("Log out")
             alertDialogBuilder.setMessage("Are you sure you want to leave?")
 
@@ -44,13 +44,17 @@ class Profile : Fragment() {
                 dialog.cancel()
             }
             alertDialogBuilder.setPositiveButton("Yes") { _, _ ->
-                auth = FirebaseAuth.getInstance()
-                auth.signOut()
-                startActivity(Intent(activity, Welcome::class.java))
+                signOut()
             }
             alertDialogBuilder.show()
             return@setOnClickListener
         }
+    }
+
+    private fun signOut() {
+        auth = FirebaseAuth.getInstance()
+        auth.signOut()
+        startActivity(Intent(activity, Welcome::class.java))
     }
 
     @RequiresApi(Build.VERSION_CODES.O)

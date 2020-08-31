@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     tools:context=".ui.MainActivity">
 
-    <!--app bar layout -->
+    <!--app bar layout and fragment content-->
 
     <include
         android:id="@+id/app_bar_main"
@@ -17,17 +17,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <!--fragment content -->
-
-    <include
-        android:id="@+id/include"
-        layout="@layout/content_main"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        app:layout_constraintBottom_toTopOf="@+id/nav_view"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/app_bar_main" />
 
     <com.ismaeldivita.chipnavigation.ChipNavigationBar
         android:id="@+id/nav_view"

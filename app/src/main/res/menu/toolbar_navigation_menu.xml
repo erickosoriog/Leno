@@ -9,7 +9,7 @@
 
     <item
         android:icon="@drawable/ic_search"
-        app:showAsAction="never"
+        app:showAsAction="ifRoom|collapseActionView"
         android:title="@string/app_name" />
 
 </menu>

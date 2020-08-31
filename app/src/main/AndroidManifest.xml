@@ -12,7 +12,6 @@
         android:roundIcon="@mipmap/ic_leno_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".ui.Folder" />
         <activity android:name=".ui.NoteLayout" />
         <activity
             android:name=".ui.ForgotPassword"
@@ -26,7 +25,8 @@
         <activity android:name=".ui.Welcome" />
         <activity
             android:name=".ui.MainActivity"
-            android:configChanges="screenSize|orientation">
+            android:configChanges="screenSize|orientation"
+            android:windowSoftInputMode="adjustNothing">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

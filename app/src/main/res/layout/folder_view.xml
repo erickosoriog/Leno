@@ -1,61 +1,33 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
+    android:paddingTop="8dp"
+    android:paddingBottom="8dp"
     android:layout_height="wrap_content">
 
     <ImageView
         android:id="@+id/folder_img"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
-        android:layout_margin="16dp"
+        android:layout_width="35dp"
+        android:outlineProvider="background"
+        android:layout_height="40dp"
+        android:contentDescription="@string/app_name"
         android:src="@drawable/ic_folder"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="@null"
-        app:layout_constraintHorizontal_bias="0.045"
+        app:layout_constraintEnd_toStartOf="@+id/include3"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.75"
-        app:tint="@color/blackgray"
-        tools:ignore="MissingConstraints"
-        android:contentDescription="@string/app_name" />
+        app:tint="@color/blackgray" />
 
-    <TextView
-        android:id="@+id/title_folder"
+    <include
+        android:id="@+id/include3"
+        layout="@layout/items_view_text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="8dp"
-        android:elegantTextHeight="true"
-        android:ems="12"
-        android:fontFamily="@font/roboto"
-        android:inputType="textMultiLine"
-        android:letterSpacing="0.015"
-        android:text="@string/title"
-        android:textAppearance="@style/TextAppearance.AppCompat.Large"
-        android:textColor="@color/black"
-        android:textSize="16sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toEndOf="@+id/folder_img"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:ignore="TextViewEdits" />
-
-    <TextView
-        android:id="@+id/date_folder"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:fontFamily="@font/roboto"
-        android:text="@string/date"
-        android:textAlignment="textStart"
-        android:textColor="@color/light"
-        android:textSize="14sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="@+id/title_folder"
-        app:layout_constraintTop_toBottomOf="@+id/title_folder" />
+        android:layout_marginStart="70dp"
+        app:layout_constraintBottom_toBottomOf="@+id/folder_img"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/folder_img" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

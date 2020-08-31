@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+
+    <TextView
+        android:id="@+id/title_items"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:elegantTextHeight="true"
+        android:ems="12"
+        android:fontFamily="@font/roboto"
+        android:inputType="textMultiLine"
+        android:letterSpacing="0.015"
+        android:text="@string/title"
+        android:textAppearance="@style/TextAppearance.AppCompat.Large"
+        android:textColor="@color/black"
+        android:textSize="16sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="TextViewEdits" />
+
+    <TextView
+        android:id="@+id/date_items"
+        android:layout_marginTop="2dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/roboto"
+        android:letterSpacing="0.03"
+        android:text="@string/date"
+        android:textAlignment="textStart"
+        android:textColor="@color/date"
+        android:textSize="12sp"
+        app:layout_constraintStart_toStartOf="@+id/title_items"
+        app:layout_constraintTop_toBottomOf="@+id/title_items" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
