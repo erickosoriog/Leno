@@ -20,6 +20,7 @@ import androidx.navigation.findNavController
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.navigateUp
+import androidx.navigation.ui.setupActionBarWithNavController
 import app.leno.R
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.google.android.material.floatingactionbutton.FloatingActionButton
@@ -51,15 +52,12 @@ class MainActivity : AppCompatActivity(), ChipNavigationBar.OnItemSelectedListen
         auth = FirebaseAuth.getInstance()
         db = FirebaseFirestore.getInstance()
 
-
         updateUI()
+
+        navView = findViewById(R.id.nav_view)
 
         val toolbar: Toolbar = findViewById(R.id.toolbar)
         setSupportActionBar(toolbar)
-
-
-        navView = findViewById(R.id.nav_view)
-        navView.setOnItemSelectedListener(this)
 
         val fab: FloatingActionButton = findViewById(R.id.fab)
         fab.setOnClickListener {
@@ -79,6 +77,7 @@ class MainActivity : AppCompatActivity(), ChipNavigationBar.OnItemSelectedListen
                 inflater = this.layoutInflater
                 layout = inflater.inflate(R.layout.activity_folder, null)
                 alertDialog.setView(layout)
+                alertDialog.setTitle("New folder")
                 alertDialog.setCancelable(false)
                 val folder: EditText = layout.findViewById(R.id.folder_title)
 
@@ -100,6 +99,20 @@ class MainActivity : AppCompatActivity(), ChipNavigationBar.OnItemSelectedListen
             }
 
         }
+
+
+        val navHostFragment =
+            supportFragmentManager.findFragmentById(R.id.nav_host_fragment) as NavHostFragment
+        val navController = navHostFragment.navController
+
+        val appBarConfiguration = AppBarConfiguration(
+            setOf(
+                R.id.Home, R.id.Favorite, R.id.calendar, R.id.Profile
+            )
+        )
+        setupActionBarWithNavController(navController, appBarConfiguration)
+
+        navView.setOnItemSelectedListener(this)
 
     }
 
@@ -188,28 +201,24 @@ class MainActivity : AppCompatActivity(), ChipNavigationBar.OnItemSelectedListen
             R.id.home -> {
                 navController.navigate(R.id.Home)
                 supportActionBar?.show()
-                supportActionBar?.setTitle(R.string.Home)
                 fab.show()
             }
 
             R.id.favorite -> {
                 navController.navigate(R.id.Favorite)
                 supportActionBar?.show()
-                supportActionBar?.setTitle(R.string.Favorite)
                 fab.show()
             }
 
             R.id.calendar -> {
                 navController.navigate(R.id.Calendar)
                 supportActionBar?.hide()
-                supportActionBar?.setTitle(R.string.Search)
                 fab.hide()
             }
 
             R.id.profile -> {
                 navController.navigate(R.id.Profile)
                 supportActionBar?.hide()
-                supportActionBar?.setTitle(R.string.Profile)
                 fab.hide()
             }
         }

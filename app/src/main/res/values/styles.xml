@@ -29,6 +29,9 @@
         <item name="buttonBarPositiveButtonStyle">@style/PositiveButtonStyle</item>
         <item name="android:backgroundDimEnabled">true</item>
         <item name="android:backgroundDimAmount">0.3</item>
+        <item name="android:textSize">16sp</item>
+        <item name="dialogCornerRadius">4dp</item>
+
     </style>
 
     <style name="NegativeButtonStyle" parent="Widget.MaterialComponents.Button.TextButton.Dialog">
@@ -66,7 +69,7 @@
 
     <style name="Roboto_toolbar">
         <item name="android:fontFamily">@font/roboto_medium</item>
-        <item name="android:textSize">24sp</item>
+        <item name="android:textSize">20sp</item>
         <item name="android:elegantTextHeight">true</item>
         <item name="android:letterSpacing">0.015</item>
     </style>

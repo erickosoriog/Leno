@@ -1,6 +1,6 @@
 package app.leno.fragments
 
-import android.app.AlertDialog
+import android.content.DialogInterface
 import android.content.Intent
 import android.os.Build
 import android.os.Bundle
@@ -36,17 +36,24 @@ class Profile : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         LogOut.setOnClickListener {
-            val alertDialogBuilder = AlertDialog.Builder(activity, R.style.AlertDialogTheme)
-            alertDialogBuilder.setTitle("Log out")
-            alertDialogBuilder.setMessage("Are you sure you want to leave?")
+            val alertDialogBuilder =
+                activity?.let { it1 ->
+                    androidx.appcompat.app.AlertDialog.Builder(
+                        it1,
+                        R.style.AlertDialogTheme
+                    )
+                }
+            alertDialogBuilder?.setTitle("Log out")
+            alertDialogBuilder?.setMessage("Are you sure you want to leave?")
 
-            alertDialogBuilder.setNegativeButton("No") { dialog, _ ->
-                dialog.cancel()
+            alertDialogBuilder?.setNegativeButton("No") { dialogInterface: DialogInterface, _: Int ->
+                dialogInterface.cancel()
             }
-            alertDialogBuilder.setPositiveButton("Yes") { _, _ ->
+            alertDialogBuilder?.setPositiveButton("Yes") { _: DialogInterface, _: Int ->
                 signOut()
             }
-            alertDialogBuilder.show()
+
+            alertDialogBuilder?.show()
             return@setOnClickListener
         }
     }
