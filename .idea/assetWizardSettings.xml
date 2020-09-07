@@ -79,7 +79,7 @@
                                             <option name="values">
                                               <map>
                                                 <entry key="color" value="000000" />
-                                                <entry key="imagePath" value="C:\Users\erick\Pictures\recursos img\ic_leno_app.png" />
+                                                <entry key="imagePath" value="C:\Users\erick\Pictures\icon.png" />
                                               </map>
                                             </option>
                                           </PersistentState>
@@ -112,9 +112,7 @@
                                   <option name="values">
                                     <map>
                                       <entry key="backgroundAssetType" value="COLOR" />
-                                      <entry key="backgroundColor" value="2f2e41" />
                                       <entry key="outputName" value="ic_leno" />
-                                      <entry key="showSafeZone" value="false" />
                                     </map>
                                   </option>
                                 </PersistentState>
@@ -280,11 +278,6 @@
                                       </entry>
                                     </map>
                                   </option>
-                                  <option name="values">
-                                    <map>
-                                      <entry key="showSafeZone" value="false" />
-                                    </map>
-                                  </option>
                                 </PersistentState>
                               </value>
                             </entry>
@@ -313,7 +306,7 @@
                                 <PersistentState>
                                   <option name="values">
                                     <map>
-                                      <entry key="url" value="jar:file:/C:/Program%20Files/Android/Android%20Studio/plugins/android/lib/android.jar!/images/material/icons/materialiconsoutlined/home/outline_home_24.xml" />
+                                      <entry key="url" value="jar:file:/C:/Program%20Files/Android/Android%20Studio/plugins/android/lib/android.jar!/images/material/icons/materialiconsoutlined/lock/outline_lock_24.xml" />
                                     </map>
                                   </option>
                                 </PersistentState>
@@ -323,8 +316,8 @@
                         </option>
                         <option name="values">
                           <map>
-                            <entry key="outputName" value="ic_outline_home" />
-                            <entry key="sourceFile" value="C:\Users\erick\AndroidStudioProjects\leno" />
+                            <entry key="outputName" value="ic_outline_lock" />
+                            <entry key="sourceFile" value="C:\Users\erick\Pictures\149086-essential-set\svg\exit-1.svg" />
                           </map>
                         </option>
                       </PersistentState>

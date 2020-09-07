@@ -2,21 +2,19 @@ package app.leno.ui
 
 import android.annotation.SuppressLint
 import android.content.Intent
-import android.os.Build
 import android.os.Bundle
 import android.widget.Button
 import android.widget.Toast
-import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
 import app.leno.R
 import com.google.firebase.auth.FirebaseAuth
 import kotlinx.android.synthetic.main.activity_forgot__password.*
 
-private lateinit var auth: FirebaseAuth
-private lateinit var resetpassword: Button
-
 class ForgotPassword : AppCompatActivity() {
-    @RequiresApi(Build.VERSION_CODES.M)
+
+    private lateinit var auth: FirebaseAuth
+    private lateinit var resetpassword: Button
+
     @SuppressLint("RestrictedApi")
     override fun onCreate(savedInstanceState: Bundle?) {
         setTheme(R.style.AppThemeActionBar)
@@ -24,9 +22,6 @@ class ForgotPassword : AppCompatActivity() {
         setContentView(R.layout.activity_forgot__password)
 
         auth = FirebaseAuth.getInstance()
-
-        supportActionBar?.title = "Forgot Password?"
-        supportActionBar?.setDefaultDisplayHomeAsUpEnabled(true)
 
         resetpassword = findViewById(R.id.reset_password)
         resetpassword.setOnClickListener {

@@ -8,6 +8,29 @@
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:context=".fragments.Home">
 
+    <ViewStub
+        android:id="@+id/progress_circular"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginBottom="80dp"
+        android:layout="@layout/progress_bar"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ViewStub
+        android:id="@+id/box_text_empty"
+        android:layout_width="wrap_content"
+        android:layout_gravity="center"
+        android:layout_height="wrap_content"
+        android:layout="@layout/box_and_text"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
     <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -35,7 +58,5 @@
         </androidx.recyclerview.widget.RecyclerView>
 
     </androidx.core.widget.NestedScrollView>
-
-    <include layout="@layout/home_and_fav" />
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

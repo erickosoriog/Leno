@@ -1,12 +1,10 @@
 package app.leno.ui
 
 import android.content.Intent
-import android.os.Build
 import android.os.Bundle
 import android.util.Log
 import android.widget.Button
 import android.widget.Toast
-import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
 import app.leno.R
 import com.google.android.gms.auth.api.signin.GoogleSignIn
@@ -20,16 +18,17 @@ import com.google.firebase.auth.GoogleAuthProvider
 import com.google.firebase.firestore.FirebaseFirestore
 import kotlinx.android.synthetic.main.activity_register.*
 
-private lateinit var auth: FirebaseAuth
-private lateinit var db: FirebaseFirestore
-private lateinit var googleSignInClient: GoogleSignInClient
-private lateinit var google_login: Button
-private var firebaseUserID: String = ""
-private lateinit var register: Button
-
 class Register : AppCompatActivity() {
-    @RequiresApi(Build.VERSION_CODES.M)
+
+    private lateinit var auth: FirebaseAuth
+    private lateinit var db: FirebaseFirestore
+    private lateinit var googleSignInClient: GoogleSignInClient
+    private lateinit var googleLogin: Button
+    private var firebaseUserID: String = ""
+    private lateinit var register: Button
+
     override fun onCreate(savedInstanceState: Bundle?) {
+        setTheme(R.style.AppThemeActionBar)
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_register)
 
@@ -50,8 +49,8 @@ class Register : AppCompatActivity() {
         googleSignInClient = GoogleSignIn.getClient(this, gso)
         googleSignInClient.signOut()
 
-        google_login = findViewById(R.id.google_sign_btn)
-        google_login.setOnClickListener {
+        googleLogin = findViewById(R.id.google_sign_btn)
+        googleLogin.setOnClickListener {
             googleLogin()
         }
 
@@ -178,14 +177,15 @@ class Register : AppCompatActivity() {
 
             startActivity(Intent(this, MainActivity::class.java))
             finish()
+            Toast.makeText(this, "Welcome ${currentUser.email}", Toast.LENGTH_SHORT).show()
 
         } else {
             Toast.makeText(this, "Please verify your email address", Toast.LENGTH_LONG).show()
         }
     }
 
-    override fun finish() {
-        super.finish()
+    override fun onBackPressed() {
+        super.onBackPressed()
         overridePendingTransition(
             R.anim.slide_in_left,
             R.anim.slide_out_right

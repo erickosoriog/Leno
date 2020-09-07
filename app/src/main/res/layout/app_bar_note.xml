@@ -20,38 +20,45 @@
 
             <ImageButton
                 android:id="@+id/notes_back_btn"
-                android:layout_width="24dp"
-                android:layout_height="24dp"
-                android:layout_margin="16dp"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_marginBottom="16dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="16dp"
                 android:background="@color/white"
                 android:contentDescription="@string/app_name"
                 android:src="@drawable/ic_round_arrow_back"
+                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
             <ImageButton
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginEnd="16dp"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_marginEnd="8dp"
+                android:tooltipText="@string/Favorite"
                 android:background="@color/white"
                 android:contentDescription="@string/app_name"
                 android:saveEnabled="false"
                 android:src="@drawable/ic_favorite"
                 app:layout_constraintBottom_toBottomOf="@+id/notes_back_btn"
                 app:layout_constraintEnd_toStartOf="@+id/add_remember"
-                app:layout_constraintTop_toTopOf="@+id/notes_back_btn" />
+                app:layout_constraintTop_toTopOf="@+id/notes_back_btn"
+                tools:targetApi="o" />
 
             <ImageButton
                 android:id="@+id/add_remember"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
                 android:layout_marginEnd="16dp"
+                android:tooltipText="reminder"
                 android:background="@color/white"
                 android:contentDescription="@string/app_name"
                 android:src="@drawable/ic_outline_add_alert"
                 app:layout_constraintBottom_toBottomOf="@+id/notes_back_btn"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="@+id/notes_back_btn" />
+                app:layout_constraintTop_toTopOf="@+id/notes_back_btn"
+                tools:targetApi="o" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 

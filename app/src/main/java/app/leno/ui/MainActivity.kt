@@ -4,15 +4,14 @@ import android.annotation.SuppressLint
 import android.content.Context
 import android.content.DialogInterface
 import android.content.Intent
-import android.os.Build
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.Menu
+import android.view.MenuItem
 import android.view.View
 import android.view.inputmethod.InputMethodManager
 import android.widget.EditText
 import android.widget.Toast
-import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
@@ -20,6 +19,7 @@ import androidx.navigation.findNavController
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.navigateUp
+import androidx.navigation.ui.onNavDestinationSelected
 import androidx.navigation.ui.setupActionBarWithNavController
 import app.leno.R
 import com.google.android.material.bottomsheet.BottomSheetDialog
@@ -33,17 +33,16 @@ import java.text.DateFormat
 import java.util.*
 import kotlin.collections.HashMap
 
-private lateinit var navView: ChipNavigationBar
-private lateinit var appBarConfiguration: AppBarConfiguration
-private lateinit var inflater: LayoutInflater
-private lateinit var layout: View
-private lateinit var auth: FirebaseAuth
-private lateinit var db: FirebaseFirestore
-private var firebaseUserID: String = ""
-
 class MainActivity : AppCompatActivity(), ChipNavigationBar.OnItemSelectedListener {
 
-    @RequiresApi(Build.VERSION_CODES.O)
+    private lateinit var navView: ChipNavigationBar
+    private lateinit var appBarConfiguration: AppBarConfiguration
+    private lateinit var inflater: LayoutInflater
+    private lateinit var layout: View
+    private lateinit var auth: FirebaseAuth
+    private lateinit var db: FirebaseFirestore
+    private var firebaseUserID: String = ""
+
     @SuppressLint("InflateParams")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -51,17 +50,15 @@ class MainActivity : AppCompatActivity(), ChipNavigationBar.OnItemSelectedListen
 
         auth = FirebaseAuth.getInstance()
         db = FirebaseFirestore.getInstance()
-
-        updateUI()
-
         navView = findViewById(R.id.nav_view)
 
-        val toolbar: Toolbar = findViewById(R.id.toolbar)
-        setSupportActionBar(toolbar)
+        val navHostFragment = supportFragmentManager
+            .findFragmentById(R.id.nav_host_fragment) as NavHostFragment
+        val navController = navHostFragment.navController
 
         val fab: FloatingActionButton = findViewById(R.id.fab)
         fab.setOnClickListener {
-            // on click add Notes o floating button
+            // on click add DataRepo o floating button
             val dialog = BottomSheetDialog(this)
             val view = layoutInflater.inflate(R.layout.bottomsheet_fab, null)
             dialog.setContentView(view)
@@ -84,6 +81,7 @@ class MainActivity : AppCompatActivity(), ChipNavigationBar.OnItemSelectedListen
 
                 alertDialog.setPositiveButton("OK") { _: DialogInterface, _: Int ->
                     addFolderDB()
+
                 }
 
                 alertDialog.setNegativeButton("Cancel") { dialogInterface: DialogInterface, _: Int ->
@@ -100,17 +98,15 @@ class MainActivity : AppCompatActivity(), ChipNavigationBar.OnItemSelectedListen
 
         }
 
-
-        val navHostFragment =
-            supportFragmentManager.findFragmentById(R.id.nav_host_fragment) as NavHostFragment
-        val navController = navHostFragment.navController
-
+        val toolbar: Toolbar = findViewById(R.id.toolbar)
+        setSupportActionBar(toolbar)
         val appBarConfiguration = AppBarConfiguration(
             setOf(
                 R.id.Home, R.id.Favorite, R.id.calendar, R.id.Profile
             )
         )
         setupActionBarWithNavController(navController, appBarConfiguration)
+
 
         navView.setOnItemSelectedListener(this)
 
@@ -122,23 +118,6 @@ class MainActivity : AppCompatActivity(), ChipNavigationBar.OnItemSelectedListen
 
         if (navController.graph.startDestination == navController.currentDestination?.id!!) {
             navView.setItemSelected(id = R.id.home, dispatchAction = true)
-        }
-    }
-
-    private fun updateUI() {
-
-        auth = FirebaseAuth.getInstance()
-        val user = auth.currentUser
-
-        if (user != null) {
-
-            Toast.makeText(this, "Welcome ${user.email}", Toast.LENGTH_SHORT).show()
-
-        } else {
-
-            startActivity(Intent(this, Welcome::class.java))
-            finish()
-
         }
     }
 
@@ -168,7 +147,7 @@ class MainActivity : AppCompatActivity(), ChipNavigationBar.OnItemSelectedListen
         userHashMap["title"] = title
         userHashMap["type"] = 1
 
-        db.collection("UsersNotes").document(firebaseUserID).collection("Notes and Folders")
+        db.collection("UsersNotes").document(firebaseUserID).collection("DataRepo and Folders")
             .add(userHashMap)
 
         hideKeyboard()
@@ -181,13 +160,16 @@ class MainActivity : AppCompatActivity(), ChipNavigationBar.OnItemSelectedListen
         return true
     }
 
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        val navController = findNavController(R.id.nav_host_fragment)
+        return item.onNavDestinationSelected(navController) || super.onOptionsItemSelected(item)
+    }
+
     override fun onSupportNavigateUp(): Boolean {
         val navController = findNavController(R.id.nav_host_fragment)
         return navController.navigateUp(appBarConfiguration) || super.onSupportNavigateUp()
     }
 
-
-    @RequiresApi(Build.VERSION_CODES.M)
     override fun onItemSelected(id: Int) {
 
         val navHostFragment =

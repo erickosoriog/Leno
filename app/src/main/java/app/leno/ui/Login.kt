@@ -2,12 +2,10 @@ package app.leno.ui
 
 import android.annotation.SuppressLint
 import android.content.Intent
-import android.os.Build
 import android.os.Bundle
 import android.util.Log
 import android.widget.Button
 import android.widget.Toast
-import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
 import app.leno.R
 import com.google.android.gms.auth.api.signin.GoogleSignIn
@@ -19,26 +17,27 @@ import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.auth.GoogleAuthProvider
 import kotlinx.android.synthetic.main.activity_login.*
 
-private lateinit var auth: FirebaseAuth
-private lateinit var googleSignInClient: GoogleSignInClient
-private lateinit var login_user: Button
-private lateinit var google_login: Button
-
 class Login : AppCompatActivity() {
+
+    private lateinit var auth: FirebaseAuth
+    private lateinit var googleSignInClient: GoogleSignInClient
+    private lateinit var loginUser: Button
+    private lateinit var googleLogin: Button
+
     companion object {
         const val RC_SIGN_IN = 17
     }
 
     @SuppressLint("RestrictedApi")
-    @RequiresApi(Build.VERSION_CODES.M)
     override fun onCreate(savedInstanceState: Bundle?) {
+        setTheme(R.style.AppThemeActionBar)
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
 
         auth = FirebaseAuth.getInstance()
 
-        login_user = findViewById(R.id.login_auth)
-        login_user.setOnClickListener {
+        loginUser = findViewById(R.id.login_auth)
+        loginUser.setOnClickListener {
             loginUser()
         }
 
@@ -51,14 +50,13 @@ class Login : AppCompatActivity() {
         googleSignInClient = GoogleSignIn.getClient(this, gso)
         googleSignInClient.signOut()
 
-        google_login = findViewById(R.id.google_sign_btn)
-        google_login.setOnClickListener {
+        googleLogin = findViewById(R.id.google_sign_btn)
+        googleLogin.setOnClickListener {
             googleLogin()
         }
 
         forgotPassword.setOnClickListener {
             startActivity(Intent(this, ForgotPassword::class.java))
-            finish()
         }
     }
 
@@ -153,18 +151,20 @@ class Login : AppCompatActivity() {
     private fun updateUI(currentUser: FirebaseUser?) {
         if (currentUser != null) {
             if (currentUser.isEmailVerified) {
-
+                Log.d("loginWithEmail", "signInWithEmail:success")
                 startActivity(Intent(this, MainActivity::class.java))
                 finish()
+                Toast.makeText(this, "Welcome ${currentUser.email}", Toast.LENGTH_SHORT).show()
 
             } else {
+                Log.d("loginWithEmail", "signInWithEmail:failed")
                 Toast.makeText(this, "Please verify your email address", Toast.LENGTH_LONG).show()
             }
         }
     }
 
-    override fun finish() {
-        super.finish()
+    override fun onBackPressed() {
+        super.onBackPressed()
         overridePendingTransition(
             R.anim.slide_in_left,
             R.anim.slide_out_right

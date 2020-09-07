@@ -1,9 +1,9 @@
 <component name="libraryTable">
   <library name="Gradle: com.ismaeldivita.chipnavigation:chip-navigation-bar:1.2.0@aar">
     <CLASSES>
-      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/e73a7f069eabe3b76d1b3c299d733df5/jetified-chip-navigation-bar-1.2.0/AndroidManifest.xml" />
-      <root url="jar://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/e73a7f069eabe3b76d1b3c299d733df5/jetified-chip-navigation-bar-1.2.0/jars/classes.jar!/" />
-      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/e73a7f069eabe3b76d1b3c299d733df5/jetified-chip-navigation-bar-1.2.0/res" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/3671af1c9deb2e2e15c148b9bc8936d5/jetified-chip-navigation-bar-1.2.0/AndroidManifest.xml" />
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/3671af1c9deb2e2e15c148b9bc8936d5/jetified-chip-navigation-bar-1.2.0/jars/classes.jar!/" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/3671af1c9deb2e2e15c148b9bc8936d5/jetified-chip-navigation-bar-1.2.0/res" />
     </CLASSES>
     <JAVADOC>
       <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.ismaeldivita.chipnavigation/chip-navigation-bar/1.2.0/ee2a08e0ecad0824e9c18813ba5c1ff1205ba59f/chip-navigation-bar-1.2.0-javadoc.jar!/" />

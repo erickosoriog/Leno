@@ -10,6 +10,6 @@
     <item
         android:icon="@drawable/ic_search"
         app:showAsAction="ifRoom|collapseActionView"
-        android:title="@string/app_name" />
+        android:title="@string/Search" />
 
 </menu>

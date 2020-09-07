@@ -15,24 +15,28 @@
         <activity android:name=".ui.NoteLayout" />
         <activity
             android:name=".ui.ForgotPassword"
-            android:parentActivityName=".ui.Login" />
+            android:label="@string/forgot_password"
+            android:parentActivityName="app.leno.ui.Login" />
         <activity
             android:name=".ui.Register"
-            android:parentActivityName=".ui.Welcome" />
+            android:label=""
+            android:parentActivityName="app.leno.ui.Welcome" />
         <activity
             android:name=".ui.Login"
-            android:parentActivityName=".ui.Welcome" />
+            android:label=""
+            android:parentActivityName="app.leno.ui.Welcome" />
         <activity android:name=".ui.Welcome" />
-        <activity
-            android:name=".ui.MainActivity"
-            android:configChanges="screenSize|orientation"
-            android:windowSoftInputMode="adjustNothing">
+        <activity android:name=".startApp.StateCurrentUser">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity
+            android:name=".ui.MainActivity"
+            android:configChanges="screenSize|orientation"
+            android:windowSoftInputMode="adjustNothing" />
     </application>
 
 </manifest>

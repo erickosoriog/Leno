@@ -9,6 +9,7 @@
     <!--app bar layout and fragment content-->
 
     <include
+        android:id="@+id/include"
         layout="@layout/app_bar_main"
         android:layout_width="match_parent"
         android:layout_height="0dp"
@@ -22,6 +23,7 @@
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
         android:layout_gravity="bottom"
+        android:hapticFeedbackEnabled="true"
         android:background="@color/white"
         android:elevation="8dp"
         android:gravity="center"
