@@ -56,6 +56,7 @@ class MainActivity : AppCompatActivity(), ChipNavigationBar.OnItemSelectedListen
             .findFragmentById(R.id.nav_host_fragment) as NavHostFragment
         val navController = navHostFragment.navController
 
+
         val fab: FloatingActionButton = findViewById(R.id.fab)
         fab.setOnClickListener {
             // on click add DataRepo o floating button
@@ -190,6 +191,7 @@ class MainActivity : AppCompatActivity(), ChipNavigationBar.OnItemSelectedListen
                 navController.navigate(R.id.Favorite)
                 supportActionBar?.show()
                 fab.show()
+
             }
 
             R.id.calendar -> {

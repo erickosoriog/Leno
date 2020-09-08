@@ -1,10 +1,12 @@
-package app.leno
+package app.leno.base
 
 import android.content.DialogInterface
 import android.content.Intent
 import android.os.Build
 import android.view.View
+import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.Fragment
+import app.leno.R
 import app.leno.ui.Welcome
 import com.google.firebase.auth.FirebaseAuth
 import kotlinx.android.synthetic.*
@@ -25,7 +27,6 @@ abstract class BaseFragment : Fragment() {
         }
     }
 
-
     fun baseFragment() {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             activity?.window?.statusBarColor = resources.getColor(R.color.white, activity?.theme)
@@ -39,7 +40,7 @@ abstract class BaseFragment : Fragment() {
         LogOut.setOnClickListener {
             val alertDialogBuilder =
                 activity?.let { it1 ->
-                    androidx.appcompat.app.AlertDialog.Builder(
+                    AlertDialog.Builder(
                         it1,
                         R.style.AlertDialogTheme
                     )
@@ -65,4 +66,5 @@ abstract class BaseFragment : Fragment() {
         startActivity(Intent(activity, Welcome::class.java))
         clearFindViewByIdCache()
     }
+
 }

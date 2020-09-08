@@ -7,9 +7,9 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
-import app.leno.BaseFragment
 import app.leno.R
 import app.leno.adapter.MainAdapter
+import app.leno.base.BaseFragment
 import app.leno.data.Resource
 import app.leno.domain.UseCaseImpl
 import app.leno.repo.RepoImpl
