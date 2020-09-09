@@ -51,11 +51,6 @@ class Home : BaseFragment() {
 
     }
 
-    override fun onDestroyView() {
-        super.onDestroyView()
-        rv.adapter = null
-    }
-
     private fun observerData() {
         viewModel.fetchUserData.observe(viewLifecycleOwner, { result ->
             when (result) {

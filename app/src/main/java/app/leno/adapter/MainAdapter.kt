@@ -61,15 +61,12 @@ class MainAdapter : ListAdapter<DataNote, RecyclerView.ViewHolder>(IDiffUtilCall
     }
 
     override fun getItemViewType(position: Int): Int {
-        val item = getItem(position)
-        return if (item.type != 0L) {
+        when (getItem(position).type) {
 
-            FolderType
-
-        } else {
-
-            NoteType
+            0L -> return NoteType
+            1L -> return FolderType
         }
+        return 0
     }
 
     override fun getItemCount(): Int {

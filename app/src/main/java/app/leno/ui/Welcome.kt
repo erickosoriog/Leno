@@ -24,7 +24,9 @@ class Welcome : AppCompatActivity() {
 
         loginWelcome = findViewById(R.id.login)
         loginWelcome.setOnClickListener {
-            startActivity(Intent(this, Login::class.java))
+
+            val intent = Intent(this, Login::class.java)
+            startActivity(intent)
             overridePendingTransition(
                 R.anim.slide_in_right,
                 R.anim.slide_out_left
@@ -32,7 +34,9 @@ class Welcome : AppCompatActivity() {
         }
         registerWelcome = findViewById(R.id.register_login)
         registerWelcome.setOnClickListener {
-            startActivity(Intent(this, Register::class.java))
+
+            val intent = Intent(this, Register::class.java)
+            startActivity(intent)
             overridePendingTransition(
                 R.anim.slide_in_right,
                 R.anim.slide_out_left

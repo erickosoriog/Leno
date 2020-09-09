@@ -54,6 +54,8 @@ class RepoImpl : IRepo {
                     Log.d(TAG, "Current data in DataRepo and Folders: $listData")
 
                 } else {
+
+                    channel.close()
                     Log.d(TAG, "$source data: null")
                 }
             }

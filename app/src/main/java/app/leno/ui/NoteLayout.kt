@@ -1,5 +1,6 @@
 package app.leno.ui
 
+import android.content.ContentValues
 import android.content.Intent
 import android.os.Bundle
 import android.text.Editable
@@ -27,15 +28,12 @@ class NoteLayout : AppCompatActivity() {
     private lateinit var titleNote: EditText
     private lateinit var textNote: EditText
 
-    private val e = "Log"
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_note_layout)
 
         auth = FirebaseAuth.getInstance()
         db = FirebaseFirestore.getInstance()
-
 
         val calendar: Calendar = Calendar.getInstance()
         val datenote: String = DateFormat.getDateTimeInstance(DateFormat.MEDIUM, DateFormat.SHORT)
@@ -97,21 +95,26 @@ class NoteLayout : AppCompatActivity() {
         db.collection("UsersNotes").document(firebaseUserID).collection("DataRepo and Folders")
             .add(userHashMap)
             .addOnSuccessListener { documentReference ->
-                Log.d(e, "DocumentSnapshot written with ID: ${documentReference.id}")
+
+                Log.d(
+                    ContentValues.TAG,
+                    "DocumentSnapshot written with ID: ${documentReference.id}"
+                )
                 Toast.makeText(this, "Note add success", Toast.LENGTH_LONG).show()
                 startActivity(Intent(this, MainActivity::class.java))
                 finish()
 
             }
             .addOnFailureListener { e ->
-                Log.w(this.e, "Error adding document", e)
+                Log.d(ContentValues.TAG, "Error adding document", e)
             }
 
     }
 
     override fun onBackPressed() {
         super.onBackPressed()
-        startActivity(Intent(this, MainActivity::class.java))
+        val intent = Intent(this, MainActivity::class.java)
+        startActivity(intent)
         finish()
     }
 

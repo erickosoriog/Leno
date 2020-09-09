@@ -3,8 +3,8 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:fitsSystemWindows="true"
     android:layout_height="match_parent"
+    android:fitsSystemWindows="true"
     tools:context=".fragments.Profile">
 
 
@@ -13,17 +13,15 @@
         android:layout_width="match_parent"
         android:layout_height="250dp"
         android:background="@color/colorPrimary"
-        android:elevation="1dp"
         android:fitsSystemWindows="true"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.0"
-        tools:ignore="MissingConstraints">
+        app:layout_constraintVertical_bias="0.0">
 
-        <RelativeLayout
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/profile"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -35,17 +33,21 @@
             app:layout_constraintTop_toTopOf="parent">
 
             <ImageView
-                android:layout_width="85dp"
-                android:layout_height="85dp"
+                android:id="@+id/imageView"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
                 android:layout_gravity="center"
                 android:layout_margin="6dp"
                 android:adjustViewBounds="true"
                 android:contentDescription="@string/app_name"
-                android:elevation="6dp"
                 android:scaleType="centerCrop"
-                android:src="@mipmap/new_avatar" />
+                android:src="@mipmap/new_avatar"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
-        </RelativeLayout>
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
         <TextView
             android:id="@+id/name"
@@ -81,12 +83,12 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="16dp"
-            android:tooltipText="@string/settings"
             android:background="@null"
             android:contentDescription="@string/app_name"
             android:hapticFeedbackEnabled="true"
             android:src="@drawable/ic_outline_settings"
             android:tint="@color/white"
+            android:tooltipText="@string/settings"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
@@ -99,11 +101,11 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="16dp"
-            android:tooltipText="@string/notifications_profile"
             android:background="@null"
             android:contentDescription="@string/app_name"
             android:src="@drawable/ic_outline_notifications"
             android:tint="@color/white"
+            android:tooltipText="@string/notifications_profile"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="1.0"
