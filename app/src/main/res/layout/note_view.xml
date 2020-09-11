@@ -9,10 +9,10 @@
     <ImageView
         android:id="@+id/note_img"
         android:layout_width="25dp"
-        android:outlineProvider="background"
         android:layout_height="30dp"
         android:background="@drawable/borders_note_view"
         android:contentDescription="@string/app_name"
+        android:outlineProvider="background"
         android:src="@drawable/ic_outline_note"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/include2"

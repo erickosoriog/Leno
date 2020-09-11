@@ -6,25 +6,25 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import app.leno.R
-import app.leno.model.DataNote
+import app.leno.model.ModelData
 import kotlinx.android.synthetic.main.items_view_text.view.*
 
-class MainAdapter : ListAdapter<DataNote, RecyclerView.ViewHolder>(IDiffUtilCallBack()) {
+class MainAdapter : ListAdapter<ModelData, RecyclerView.ViewHolder>(IDiffUtilCallBack()) {
 
     companion object {
-        private const val NoteType: Int = 0
-        private const val FolderType: Int = 1
+        private const val VIEW_TYPE_NOTE: Int = 0
+        private const val VIEW_TYPE_FOLDER: Int = 1
     }
 
-    class NoteViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        fun bindView(user: DataNote) {
+    inner class NoteViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+        fun bindView(user: ModelData) {
             itemView.title_items.text = user.title
             itemView.date_items.text = user.date
         }
     }
 
-    class FolderViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        fun bindView(user: DataNote) {
+    inner class FolderViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+        fun bindView(user: ModelData) {
             itemView.title_items.text = user.title
             itemView.date_items.text = user.date
         }
@@ -33,13 +33,13 @@ class MainAdapter : ListAdapter<DataNote, RecyclerView.ViewHolder>(IDiffUtilCall
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
         return when (viewType) {
 
-            NoteType -> {
+            VIEW_TYPE_NOTE -> {
                 val view =
                     LayoutInflater.from(parent.context).inflate(R.layout.note_view, parent, false)
                 NoteViewHolder(view)
             }
 
-            FolderType -> {
+            VIEW_TYPE_FOLDER -> {
                 val view =
                     LayoutInflater.from(parent.context).inflate(R.layout.folder_view, parent, false)
                 FolderViewHolder(view)
@@ -63,8 +63,8 @@ class MainAdapter : ListAdapter<DataNote, RecyclerView.ViewHolder>(IDiffUtilCall
     override fun getItemViewType(position: Int): Int {
         when (getItem(position).type) {
 
-            0L -> return NoteType
-            1L -> return FolderType
+            0L -> return VIEW_TYPE_NOTE
+            1L -> return VIEW_TYPE_FOLDER
         }
         return 0
     }

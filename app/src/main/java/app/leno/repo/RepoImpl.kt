@@ -3,7 +3,7 @@ package app.leno.repo
 import android.content.ContentValues.TAG
 import android.util.Log
 import app.leno.data.Resource
-import app.leno.model.DataNote
+import app.leno.model.ModelData
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.MetadataChanges
@@ -20,12 +20,12 @@ class RepoImpl : IRepo {
     private lateinit var auth: FirebaseAuth
 
     @ExperimentalCoroutinesApi
-    override suspend fun getUserData(): Flow<Resource<MutableList<DataNote>>> = callbackFlow {
+    override suspend fun getUserData(): Flow<Resource<MutableList<ModelData>>> = callbackFlow {
 
         auth = FirebaseAuth.getInstance()
         firebaseUserID = auth.currentUser!!.uid
 
-        val listData = mutableListOf<DataNote>()
+        val listData = mutableListOf<ModelData>()
 
         val fireStoreDB = FirebaseFirestore
             .getInstance()
@@ -50,7 +50,7 @@ class RepoImpl : IRepo {
 
                 if (snapshot != null) {
 
-                    channel.offer(Resource.Success(snapshot.toObjects(DataNote::class.java)))
+                    channel.offer(Resource.Success(snapshot.toObjects(ModelData::class.java)))
                     Log.d(TAG, "Current data in DataRepo and Folders: $listData")
 
                 } else {

@@ -1,6 +1,6 @@
 package app.leno.model
 
-data class DataNote(
+data class ModelData(
 
     val imageUrl: String? = null,
     val title: String = "",

@@ -1,10 +1,11 @@
-package app.leno.ui
+package app.leno.ui.activitys
 
 import android.annotation.SuppressLint
 import android.content.Intent
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
+import android.view.View
 import androidx.appcompat.widget.Toolbar
 import androidx.navigation.findNavController
 import androidx.navigation.fragment.NavHostFragment
@@ -13,7 +14,7 @@ import androidx.navigation.ui.navigateUp
 import androidx.navigation.ui.onNavDestinationSelected
 import androidx.navigation.ui.setupActionBarWithNavController
 import app.leno.R
-import app.leno.base.BaseActivity
+import app.leno.ui.bases.BaseActivity
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.ismaeldivita.chipnavigation.ChipNavigationBar
@@ -25,7 +26,6 @@ class MainActivity : BaseActivity(), ChipNavigationBar.OnItemSelectedListener {
     private lateinit var navView: ChipNavigationBar
     private lateinit var appBarConfiguration: AppBarConfiguration
 
-
     @SuppressLint("InflateParams")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -34,12 +34,10 @@ class MainActivity : BaseActivity(), ChipNavigationBar.OnItemSelectedListener {
         navView = findViewById(R.id.nav_view)
 
         val navHostFragment =
-            supportFragmentManager
-                .findFragmentById(R.id.nav_host_fragment) as NavHostFragment
+            supportFragmentManager.findFragmentById(R.id.nav_host_fragment) as NavHostFragment
         val navController = navHostFragment.navController
 
         val fab: FloatingActionButton = findViewById(R.id.fab)
-
         fab.setOnClickListener {
             // on click add DataRepo o floating button
 
@@ -77,6 +75,7 @@ class MainActivity : BaseActivity(), ChipNavigationBar.OnItemSelectedListener {
 
     override fun onStart() {
         super.onStart()
+        overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out)
         val navController = findNavController(R.id.nav_host_fragment)
         if (navController.graph.startDestination == navController.currentDestination?.id!!) {
             navView.setItemSelected(id = R.id.home, dispatchAction = true)
@@ -125,13 +124,13 @@ class MainActivity : BaseActivity(), ChipNavigationBar.OnItemSelectedListener {
             R.id.calendar -> {
                 navController.navigate(R.id.Calendar)
                 supportActionBar?.hide()
-                fab.hide()
+                fab.visibility = View.GONE
             }
 
             R.id.profile -> {
                 navController.navigate(R.id.Profile)
                 supportActionBar?.hide()
-                fab.hide()
+                fab.visibility = View.GONE
             }
         }
     }

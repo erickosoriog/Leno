@@ -9,7 +9,7 @@
 
     <item
         android:icon="@drawable/ic_search"
-        app:showAsAction="ifRoom|collapseActionView"
-        android:title="@string/Search" />
+        android:title="@string/Search"
+        app:showAsAction="ifRoom|collapseActionView" />
 
 </menu>

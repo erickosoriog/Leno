@@ -12,7 +12,10 @@ class MainViewModel(private val useCase: IUseCase) : ViewModel() {
 
     val fetchUserData = liveData(Dispatchers.IO) {
 
+        emit(Resource.Loading())
+
         try {
+
             useCase.userData().collect {
                 emit(it)
 

@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.Register">
+    tools:context=".ui.activitys.Register">
 
     <TextView
         android:id="@+id/welcome_auth"
@@ -122,6 +122,7 @@
     <Button
         android:id="@+id/register_user"
         android:layout_width="0dp"
+        android:onClick="onClick"
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
         android:layout_marginTop="16dp"
@@ -147,7 +148,7 @@
         android:layout_width="140dp"
         android:layout_height="1dp"
         android:background="@color/white_light"
-        app:layout_constraintBottom_toTopOf="@+id/google_sign_btn"
+        app:layout_constraintBottom_toTopOf="@+id/googleButton"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="@id/register_user"
@@ -175,20 +176,21 @@
         android:layout_height="1dp"
         android:background="@color/white_light"
         android:foregroundGravity="center"
-        app:layout_constraintBottom_toTopOf="@+id/google_sign_btn"
+        app:layout_constraintBottom_toTopOf="@+id/googleButton"
         app:layout_constraintEnd_toEndOf="@id/register_user"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/register_user" />
 
     <Button
-        android:id="@+id/google_sign_btn"
+        android:id="@+id/googleButton"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
         android:layout_marginTop="16dp"
         android:layout_marginEnd="32dp"
         android:layout_marginBottom="8dp"
+        android:onClick="onClick"
         android:background="@drawable/borders_google_btn"
         android:drawableStart="@drawable/googleg_standard_color_18"
         android:drawablePadding="-80dp"

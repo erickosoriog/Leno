@@ -1,4 +1,4 @@
-package app.leno.fragments
+package app.leno.ui.fragments
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -9,10 +9,10 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import app.leno.R
 import app.leno.adapter.MainAdapter
-import app.leno.base.BaseFragment
 import app.leno.data.Resource
 import app.leno.domain.UseCaseImpl
 import app.leno.repo.RepoImpl
+import app.leno.ui.bases.BaseFragment
 import app.leno.viewmodel.DataVMFactory
 import app.leno.viewmodel.MainViewModel
 import kotlinx.android.synthetic.main.fragment_home.*
@@ -45,7 +45,7 @@ class Home : BaseFragment() {
         super.onActivityCreated(savedInstanceState)
 
         adapter = MainAdapter()
-        rv.layoutManager = LinearLayoutManager(activity)
+        rv.layoutManager = LinearLayoutManager(activity, LinearLayoutManager.VERTICAL, false)
         rv.adapter = adapter
         observerData()
 
@@ -56,18 +56,20 @@ class Home : BaseFragment() {
             when (result) {
 
                 is Resource.Loading -> {
+
                     progress_circular.visibility = View.VISIBLE
                 }
 
                 is Resource.Success -> {
 
                     adapter.submitList(result.data)
-                    progress_circular.visibility = View.GONE
+
 
                     if (adapter.currentList.isEmpty()) {
                         box_text_empty.visibility = View.VISIBLE
                     } else {
                         box_text_empty.visibility = View.GONE
+                        progress_circular.visibility = View.GONE
                     }
 
                 }

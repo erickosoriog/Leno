@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/Home"
-        android:name="app.leno.fragments.Home"
+        android:name="app.leno.ui.fragments.Home"
         android:label="@string/Home"
         tools:layout="@layout/fragment_home">
 
@@ -16,7 +16,7 @@
 
     <fragment
         android:id="@+id/Favorite"
-        android:name="app.leno.fragments.Favorite"
+        android:name="app.leno.ui.fragments.Favorite"
         android:label="@string/Favorite"
         tools:layout="@layout/fragment_favorites">
 
@@ -24,7 +24,7 @@
 
     <fragment
         android:id="@+id/Calendar"
-        android:name="app.leno.fragments.Calendar"
+        android:name="app.leno.ui.fragments.Calendar"
         android:label="@string/Calendar"
         tools:layout="@layout/fragment_calendar">
 
@@ -32,7 +32,7 @@
 
     <fragment
         android:id="@+id/Profile"
-        android:name="app.leno.fragments.Profile"
+        android:name="app.leno.ui.fragments.Profile"
         android:label="@string/Profile"
         tools:layout="@layout/fragment_profile" />
 </navigation>

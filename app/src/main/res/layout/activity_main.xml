@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.MainActivity">
+    tools:context=".ui.activitys.MainActivity">
 
     <!--app bar layout and fragment content-->
 
@@ -23,10 +23,10 @@
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
         android:layout_gravity="bottom"
-        android:hapticFeedbackEnabled="true"
         android:background="@color/white"
         android:elevation="8dp"
         android:gravity="center"
+        android:hapticFeedbackEnabled="true"
         app:cnb_menuResource="@menu/bottom_navigation_menu"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

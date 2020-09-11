@@ -1,15 +1,15 @@
 <layer-list xmlns:android="http://schemas.android.com/apk/res/android">
     <item
-        android:gravity="fill"
         android:drawable="@drawable/bg_vectors_profile"
+        android:gravity="fill"
 
         />
     <item
-        android:gravity="center"
-        android:drawable="@drawable/ic_chevron"
-        android:top="5dp"
         android:bottom="5dp"
+        android:drawable="@drawable/ic_chevron"
+        android:gravity="center"
         android:left="5dp"
-        android:right="5dp" />
+        android:right="5dp"
+        android:top="5dp" />
 
 </layer-list>

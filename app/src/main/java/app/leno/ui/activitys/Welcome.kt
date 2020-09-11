@@ -1,4 +1,4 @@
-package app.leno.ui
+package app.leno.ui.activitys
 
 import android.content.Intent
 import android.os.Bundle
@@ -18,6 +18,11 @@ class Welcome : AppCompatActivity() {
 
         clickBottoms()
 
+    }
+
+    override fun onStart() {
+        super.onStart()
+        overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out)
     }
 
     private fun clickBottoms() {

@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.Login">
+    tools:context=".ui.activitys.Login">
 
     <TextView
         android:id="@+id/welcome_auth"
@@ -74,7 +74,7 @@
         android:layout_marginBottom="16dp"
         app:endIconMode="password_toggle"
         app:endIconTint="@color/white_light"
-        app:layout_constraintBottom_toTopOf="@+id/login_auth"
+        app:layout_constraintBottom_toTopOf="@+id/loginButton"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent">
 
@@ -93,8 +93,9 @@
     </com.google.android.material.textfield.TextInputLayout>
 
     <Button
-        android:id="@+id/login_auth"
+        android:id="@+id/loginButton"
         android:layout_width="0dp"
+        android:onClick="onClick"
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
         android:layout_marginTop="16dp"
@@ -120,11 +121,11 @@
         android:layout_width="140dp"
         android:layout_height="1dp"
         android:background="@color/white_light"
-        app:layout_constraintBottom_toTopOf="@+id/google_sign_btn"
+        app:layout_constraintBottom_toTopOf="@+id/googleButton"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="@id/login_auth"
-        app:layout_constraintTop_toBottomOf="@+id/login_auth" />
+        app:layout_constraintStart_toStartOf="@id/loginButton"
+        app:layout_constraintTop_toBottomOf="@+id/loginButton" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -148,17 +149,18 @@
         android:layout_height="1dp"
         android:background="@color/white_light"
         android:foregroundGravity="center"
-        app:layout_constraintBottom_toTopOf="@+id/google_sign_btn"
-        app:layout_constraintEnd_toEndOf="@id/login_auth"
+        app:layout_constraintBottom_toTopOf="@+id/googleButton"
+        app:layout_constraintEnd_toEndOf="@id/loginButton"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/login_auth" />
+        app:layout_constraintTop_toBottomOf="@+id/loginButton" />
 
     <Button
-        android:id="@+id/google_sign_btn"
+        android:id="@+id/googleButton"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
+        android:onClick="onClick"
         android:layout_marginTop="16dp"
         android:layout_marginEnd="32dp"
         android:layout_marginBottom="8dp"
@@ -174,7 +176,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/login_auth"
+        app:layout_constraintTop_toBottomOf="@+id/loginButton"
         app:layout_constraintVertical_bias="0.327"
         tools:ignore="MissingConstraints,RtlSymmetry" />
 
@@ -190,6 +192,6 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/google_sign_btn" />
+        app:layout_constraintTop_toBottomOf="@+id/googleButton" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

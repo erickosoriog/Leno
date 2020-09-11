@@ -1,4 +1,4 @@
-package app.leno.ui
+package app.leno.ui.activitys
 
 import android.annotation.SuppressLint
 import android.content.Intent
@@ -30,6 +30,11 @@ class ForgotPassword : AppCompatActivity() {
         }
     }
 
+    override fun onStart() {
+        super.onStart()
+        overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out)
+    }
+
     private fun resetPassword() {
 
         val email: String = email_reset_password.editText?.text.toString()
@@ -58,6 +63,7 @@ class ForgotPassword : AppCompatActivity() {
 
         val intent = Intent(this, Login::class.java)
         startActivity(intent)
+        overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out)
         finish()
     }
 }

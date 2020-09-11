@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:layout_below="@+id/toolbar"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
-    tools:context=".fragments.Home">
+    tools:context=".ui.fragments.Home">
 
     <ViewStub
         android:id="@+id/progress_circular"
@@ -14,31 +14,20 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:layout_marginBottom="80dp"
-        android:layout="@layout/progress_bar"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:layout="@layout/progress_bar" />
 
     <ViewStub
         android:id="@+id/box_text_empty"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:layout="@layout/box_and_text"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:layout="@layout/box_and_text" />
 
     <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:clipToPadding="true"
-        android:fitsSystemWindows="true"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        android:fitsSystemWindows="true">
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rv"
@@ -48,12 +37,7 @@
             android:foregroundGravity="center"
             android:nestedScrollingEnabled="false"
             android:overScrollMode="never"
-            android:paddingBottom="70dp"
-            app:layout_behavior="androidx.appcompat.widget.Toolbar"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            android:paddingBottom="70dp" />
 
     </androidx.core.widget.NestedScrollView>
 

@@ -1,21 +1,17 @@
-package app.leno.ui
+package app.leno.ui.activitys
 
 import android.annotation.SuppressLint
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
-import android.widget.Button
+import android.view.View
 import app.leno.R
-import app.leno.base.BaseActivity
+import app.leno.ui.bases.BaseAuth
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.common.api.ApiException
-import kotlinx.android.synthetic.main.activity_login.*
 import kotlinx.coroutines.launch
 
-class Login : BaseActivity() {
-
-    private lateinit var loginUser: Button
-    private lateinit var googleLogin: Button
+class Login : BaseAuth(), View.OnClickListener {
 
     @SuppressLint("RestrictedApi")
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -23,25 +19,12 @@ class Login : BaseActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
 
-        loginUser = findViewById(R.id.login_auth)
-        loginUser.setOnClickListener {
-            launch {
-                loginUser()
-            }
-        }
+    }
 
-        // Google login configuration
-
-        googleLogin = findViewById(R.id.google_sign_btn)
-        googleLogin.setOnClickListener {
-            launch {
-                googleLogin()
-            }
-        }
-
-        forgotPassword.setOnClickListener {
-            val intent = Intent(this, ForgotPassword::class.java)
-            startActivity(intent)
+    override fun onClick(item: View?) {
+        when (item?.id) {
+            R.id.loginButton -> launch { loginUser() }
+            R.id.googleButton -> launch { googleLogin() }
         }
     }
 
@@ -80,4 +63,5 @@ class Login : BaseActivity() {
             R.anim.slide_out_right
         )
     }
+
 }

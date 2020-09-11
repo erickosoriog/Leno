@@ -1,44 +1,29 @@
-package app.leno.ui
+package app.leno.ui.activitys
 
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
-import android.widget.Button
+import android.view.View
 import app.leno.R
-import app.leno.base.BaseActivity
+import app.leno.ui.bases.BaseAuth
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.common.api.ApiException
 import kotlinx.coroutines.launch
 
-class Register : BaseActivity() {
-
-
-    private lateinit var googleLogin: Button
-    private lateinit var register: Button
+class Register : BaseAuth(), View.OnClickListener {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         setTheme(R.style.AppThemeActionBar)
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_register)
 
-        register = findViewById(R.id.register_user)
-        register.setOnClickListener {
-            launch {
-                registerUser()
-            }
+    }
+
+    override fun onClick(item: View?) {
+        when (item?.id) {
+            R.id.register_user -> launch { registerUser() }
+            R.id.googleButton -> launch { googleLogin() }
         }
-
-        // Google login configuration
-
-        googleLogin = findViewById(R.id.google_sign_btn)
-        googleLogin.setOnClickListener {
-            launch {
-                googleLogin()
-            }
-        }
-
-        // finish google login config and onCreate
-
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
@@ -75,5 +60,6 @@ class Register : BaseActivity() {
             R.anim.slide_out_right
         )
     }
+
 
 }

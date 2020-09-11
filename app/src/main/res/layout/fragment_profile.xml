@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fitsSystemWindows="true"
-    tools:context=".fragments.Profile">
+    tools:context=".ui.fragments.Profile">
 
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -34,8 +34,8 @@
 
             <ImageView
                 android:id="@+id/imageView"
-                android:layout_width="100dp"
-                android:layout_height="100dp"
+                android:layout_width="90dp"
+                android:layout_height="90dp"
                 android:layout_gravity="center"
                 android:layout_margin="6dp"
                 android:adjustViewBounds="true"

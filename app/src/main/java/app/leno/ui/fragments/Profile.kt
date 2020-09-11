@@ -1,11 +1,11 @@
-package app.leno.fragments
+package app.leno.ui.fragments
 
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import app.leno.R
-import app.leno.base.BaseFragment
+import app.leno.ui.bases.BaseFragment
 
 class Profile : BaseFragment() {
 

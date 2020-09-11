@@ -1,4 +1,4 @@
-package app.leno.base
+package app.leno.ui.bases
 
 import android.content.DialogInterface
 import android.content.Intent
@@ -7,7 +7,7 @@ import android.view.View
 import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.Fragment
 import app.leno.R
-import app.leno.ui.Welcome
+import app.leno.ui.activitys.Welcome
 import com.google.firebase.auth.FirebaseAuth
 import kotlinx.android.synthetic.*
 import kotlinx.android.synthetic.main.fragment_profile.*

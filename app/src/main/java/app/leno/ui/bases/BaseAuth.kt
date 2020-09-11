@@ -1,20 +1,12 @@
-package app.leno.base
+package app.leno.ui.bases
 
-import android.annotation.SuppressLint
-import android.content.Context
-import android.content.DialogInterface
 import android.content.Intent
 import android.util.Log
-import android.view.LayoutInflater
-import android.view.View
-import android.view.inputmethod.InputMethodManager
-import android.widget.EditText
 import android.widget.Toast
-import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import app.leno.R
-import app.leno.ui.Login
-import app.leno.ui.MainActivity
+import app.leno.ui.activitys.Login
+import app.leno.ui.activitys.MainActivity
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInClient
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions
@@ -29,12 +21,9 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.tasks.await
-import java.text.DateFormat
-import java.util.*
-import kotlin.collections.HashMap
 import kotlin.coroutines.CoroutineContext
 
-abstract class BaseActivity : AppCompatActivity(), CoroutineScope {
+abstract class BaseAuth : AppCompatActivity(), CoroutineScope {
 
     private var job: Job = Job()
     override val coroutineContext: CoroutineContext
@@ -44,8 +33,6 @@ abstract class BaseActivity : AppCompatActivity(), CoroutineScope {
     private lateinit var googleSignInClient: GoogleSignInClient
     private lateinit var db: FirebaseFirestore
     private var firebaseUserID: String = ""
-    private lateinit var inflater: LayoutInflater
-    private lateinit var layout: View
 
     companion object {
         const val RC_SIGN_IN = 17
@@ -124,22 +111,26 @@ abstract class BaseActivity : AppCompatActivity(), CoroutineScope {
         db.collection("UsersNotes").document(firebaseUserID).set(documentUserMap)
     }
 
-    private fun sendEMailVerification() {
+    private suspend fun sendEMailVerification() {
 
         auth = FirebaseAuth.getInstance()
 
-        val user: FirebaseUser? = auth.currentUser
-        user?.sendEmailVerification()
-            ?.addOnCompleteListener { task ->
-                if (task.isSuccessful) {
+        try {
 
-                    Toast.makeText(this, "Email verify send", Toast.LENGTH_SHORT).show()
+            val user: FirebaseUser? = auth.currentUser
+            user?.sendEmailVerification()
+                ?.await()
 
-                    val intent = Intent(this, Login::class.java)
-                    startActivity(intent)
-                    finish()
-                }
-            }
+            Toast.makeText(this, "Email verify send", Toast.LENGTH_SHORT).show()
+
+            val intent = Intent(this, Login::class.java)
+            startActivity(intent)
+            finish()
+
+        } catch (e: Exception) {
+
+            Toast.makeText(this, e.message, Toast.LENGTH_SHORT).show()
+        }
     }
 
     suspend fun loginUser() {
@@ -190,11 +181,12 @@ abstract class BaseActivity : AppCompatActivity(), CoroutineScope {
 
             if (currentUser.isEmailVerified) {
 
+                Log.d("loginWithEmail", "signInWithEmail:success")
                 val intent = Intent(this, MainActivity::class.java)
                 startActivity(intent)
-                Log.d("loginWithEmail", "signInWithEmail:success")
                 finish()
                 Toast.makeText(this, "Welcome ${currentUser.email}", Toast.LENGTH_SHORT).show()
+
 
             } else {
 
@@ -255,70 +247,6 @@ abstract class BaseActivity : AppCompatActivity(), CoroutineScope {
 
             Toast.makeText(this, "Please verify your email address", Toast.LENGTH_LONG).show()
         }
-    }
-
-    @SuppressLint("InflateParams")
-    fun folderViewDB() {
-
-        val alertDialog = AlertDialog.Builder(this)
-        inflater = this.layoutInflater
-        layout = inflater.inflate(R.layout.activity_folder, null)
-        alertDialog.setView(layout)
-        alertDialog.setTitle("New folder")
-        alertDialog.setCancelable(false)
-        val folder: EditText = layout.findViewById(R.id.folder_title)
-
-
-        alertDialog.setPositiveButton("OK") { _: DialogInterface, _: Int ->
-            addFolderDB()
-
-        }
-
-        alertDialog.setNegativeButton("Cancel") { dialogInterface: DialogInterface, _: Int ->
-            dialogInterface.cancel()
-            hideKeyboard()
-        }
-
-        alertDialog.show()
-        folder.requestFocus()
-        showKeyboard()
-    }
-
-    private fun showKeyboard() {
-
-        val imm = getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
-        imm.toggleSoftInput(InputMethodManager.SHOW_FORCED, 0)
-    }
-
-    private fun hideKeyboard() {
-
-        val imm = getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
-        imm.toggleSoftInput(InputMethodManager.HIDE_IMPLICIT_ONLY, 0)
-    }
-
-    private fun addFolderDB() {
-
-        auth = FirebaseAuth.getInstance()
-        db = FirebaseFirestore.getInstance()
-
-        val folder: EditText = layout.findViewById(R.id.folder_title)
-
-        val title: String = folder.text.toString()
-        val calendar: Calendar = Calendar.getInstance()
-        val date: String = DateFormat.getDateTimeInstance(DateFormat.MEDIUM, DateFormat.SHORT)
-            .format(calendar.time)
-
-        firebaseUserID = auth.currentUser!!.uid
-        val userHashMap = HashMap<String, Any>()
-        userHashMap["created"] = Timestamp.now()
-        userHashMap["date"] = date
-        userHashMap["title"] = title
-        userHashMap["type"] = 1
-
-        db.collection("UsersNotes").document(firebaseUserID).collection("DataRepo and Folders")
-            .add(userHashMap)
-
-        Toast.makeText(this, "Folder add success", Toast.LENGTH_SHORT).show()
     }
 
 }

@@ -12,20 +12,20 @@
         android:roundIcon="@mipmap/ic_leno_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".ui.NoteLayout" />
+        <activity android:name=".ui.activitys.NoteLayout" />
         <activity
-            android:name=".ui.ForgotPassword"
+            android:name=".ui.activitys.ForgotPassword"
             android:label="@string/forgot_password"
-            android:parentActivityName="app.leno.ui.Login" />
+            android:parentActivityName="app.leno.ui.activitys.Login" />
         <activity
-            android:name=".ui.Register"
+            android:name=".ui.activitys.Register"
             android:label=""
-            android:parentActivityName="app.leno.ui.Welcome" />
+            android:parentActivityName="app.leno.ui.activitys.Welcome" />
         <activity
-            android:name=".ui.Login"
+            android:name=".ui.activitys.Login"
             android:label=""
-            android:parentActivityName="app.leno.ui.Welcome" />
-        <activity android:name=".ui.Welcome" />
+            android:parentActivityName="app.leno.ui.activitys.Welcome" />
+        <activity android:name=".ui.activitys.Welcome" />
         <activity android:name=".startApp.StateCurrentUser">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -34,7 +34,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".ui.MainActivity"
+            android:name=".ui.activitys.MainActivity"
             android:configChanges="screenSize|orientation"
             android:windowSoftInputMode="adjustNothing" />
     </application>
