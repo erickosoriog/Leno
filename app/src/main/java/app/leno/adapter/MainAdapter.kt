@@ -9,15 +9,22 @@ import app.leno.R
 import app.leno.model.ModelData
 import kotlinx.android.synthetic.main.items_view_text.view.*
 
-class MainAdapter : ListAdapter<ModelData, RecyclerView.ViewHolder>(IDiffUtilCallBack()) {
+class MainAdapter(private val itemClickListener: OnItemClickListener) :
+    ListAdapter<ModelData, RecyclerView.ViewHolder>(IDiffUtilCallBack()) {
 
     companion object {
         private const val VIEW_TYPE_NOTE: Int = 0
         private const val VIEW_TYPE_FOLDER: Int = 1
+
+    }
+
+    interface OnItemClickListener {
+        fun onClick(adapterPosition: ModelData)
     }
 
     inner class NoteViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         fun bindView(user: ModelData) {
+            itemView.setOnClickListener { itemClickListener.onClick(getItem(adapterPosition)) }
             itemView.title_items.text = user.title
             itemView.date_items.text = user.date
         }
@@ -25,6 +32,7 @@ class MainAdapter : ListAdapter<ModelData, RecyclerView.ViewHolder>(IDiffUtilCal
 
     inner class FolderViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         fun bindView(user: ModelData) {
+            itemView.setOnClickListener { itemClickListener.onClick(getItem(adapterPosition)) }
             itemView.title_items.text = user.title
             itemView.date_items.text = user.date
         }
@@ -51,18 +59,18 @@ class MainAdapter : ListAdapter<ModelData, RecyclerView.ViewHolder>(IDiffUtilCal
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
         val item = getItem(position)
         when (holder) {
-            is NoteViewHolder -> {
+            is MainAdapter.NoteViewHolder -> {
                 holder.bindView(item)
             }
             is FolderViewHolder -> {
                 holder.bindView(item)
             }
         }
+
     }
 
     override fun getItemViewType(position: Int): Int {
         when (getItem(position).type) {
-
             0L -> return VIEW_TYPE_NOTE
             1L -> return VIEW_TYPE_FOLDER
         }

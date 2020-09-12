@@ -11,16 +11,22 @@ import android.widget.EditText
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import app.leno.R
+import app.leno.model.ModelData
 import com.google.firebase.Timestamp
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 import kotlinx.android.synthetic.main.activity_note_layout.*
 import kotlinx.android.synthetic.main.app_bar_note.*
+import kotlinx.android.synthetic.main.content_note.*
 import java.text.DateFormat
 import java.util.*
 import kotlin.collections.HashMap
 
 class NoteLayout : AppCompatActivity() {
+
+    companion object {
+        const val DATA_TEXT = "passed"
+    }
 
     private lateinit var auth: FirebaseAuth
     private lateinit var db: FirebaseFirestore
@@ -32,6 +38,21 @@ class NoteLayout : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_note_layout)
 
+        if (intent.extras != null) {
+
+            val text = intent.getParcelableExtra<ModelData>(DATA_TEXT)
+            created.text = text!!.date
+            InputNotesTittle.setText(text.title)
+            InputNote.setText(text.text)
+
+        }
+
+        titleNote = findViewById(R.id.InputNotesTittle)
+        textNote = findViewById(R.id.InputNote)
+        textNote.autoLinkMask = Linkify.ALL
+        textNote.movementMethod
+        Linkify.addLinks(textNote, Linkify.WEB_URLS)
+
         auth = FirebaseAuth.getInstance()
         db = FirebaseFirestore.getInstance()
 
@@ -39,13 +60,7 @@ class NoteLayout : AppCompatActivity() {
         val datenote: String = DateFormat.getDateTimeInstance(DateFormat.MEDIUM, DateFormat.SHORT)
             .format(calendar.time)
 
-        created.text = datenote
 
-        titleNote = findViewById(R.id.InputNotesTittle)
-        textNote = findViewById(R.id.InputNote)
-        textNote.autoLinkMask = Linkify.ALL
-        textNote.movementMethod
-        Linkify.addLinks(textNote, Linkify.WEB_URLS)
 
         textNote.addTextChangedListener(object : TextWatcher {
             override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {

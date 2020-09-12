@@ -1,5 +1,6 @@
 package app.leno.ui.fragments
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -11,14 +12,16 @@ import app.leno.R
 import app.leno.adapter.MainAdapter
 import app.leno.data.Resource
 import app.leno.domain.UseCaseImpl
+import app.leno.model.ModelData
 import app.leno.repo.RepoImpl
+import app.leno.ui.activitys.NoteLayout
 import app.leno.ui.bases.BaseFragment
 import app.leno.viewmodel.DataVMFactory
 import app.leno.viewmodel.MainViewModel
 import kotlinx.android.synthetic.main.fragment_home.*
 
 
-class Home : BaseFragment() {
+class Home : BaseFragment(), MainAdapter.OnItemClickListener {
 
     private lateinit var adapter: MainAdapter
 
@@ -44,7 +47,7 @@ class Home : BaseFragment() {
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
 
-        adapter = MainAdapter()
+        adapter = MainAdapter(this)
         rv.layoutManager = LinearLayoutManager(activity, LinearLayoutManager.VERTICAL, false)
         rv.adapter = adapter
         observerData()
@@ -64,14 +67,14 @@ class Home : BaseFragment() {
 
                     adapter.submitList(result.data)
 
-
-                    if (adapter.currentList.isEmpty()) {
-                        box_text_empty.visibility = View.VISIBLE
-                    } else {
+                    if (adapter.currentList.isNotEmpty() && result.data.size > 0) {
                         box_text_empty.visibility = View.GONE
+                        rv.visibility = View.VISIBLE
+                    } else {
+                        rv.visibility = View.GONE
+                        box_text_empty.visibility = View.VISIBLE
                         progress_circular.visibility = View.GONE
                     }
-
                 }
 
                 is Resource.Failure -> {
@@ -85,5 +88,11 @@ class Home : BaseFragment() {
 
         })
 
+    }
+
+    override fun onClick(adapterPosition: ModelData) {
+        val intent = Intent(activity, NoteLayout::class.java)
+        intent.putExtra(NoteLayout.DATA_TEXT, adapterPosition)
+        startActivity(intent)
     }
 }
