@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.activitys.Login">
+    tools:context=".ui.activity.Login">
 
     <TextView
         android:id="@+id/welcome_auth"
@@ -95,7 +95,6 @@
     <Button
         android:id="@+id/loginButton"
         android:layout_width="0dp"
-        android:onClick="onClick"
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
         android:layout_marginTop="16dp"
@@ -105,6 +104,7 @@
         android:enabled="true"
         android:fontFamily="@font/roboto"
         android:gravity="center"
+        android:onClick="onClick"
         android:text="@string/login"
         android:textAppearance="@style/TextAppearance.MaterialComponents.Button"
         android:textColor="@color/white"
@@ -160,7 +160,6 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
-        android:onClick="onClick"
         android:layout_marginTop="16dp"
         android:layout_marginEnd="32dp"
         android:layout_marginBottom="8dp"
@@ -168,6 +167,7 @@
         android:drawableStart="@drawable/googleg_standard_color_18"
         android:drawablePadding="-80dp"
         android:fontFamily="@font/roboto"
+        android:onClick="onClick"
         android:paddingStart="80dp"
         android:text="@string/login_with_google"
         android:textAppearance="@style/TextAppearance.MaterialComponents.Button"
@@ -181,12 +181,13 @@
         tools:ignore="MissingConstraints,RtlSymmetry" />
 
     <Button
-        android:id="@+id/forgotPassword"
+        android:id="@+id/forgot_password"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:background="@null"
         android:elegantTextHeight="true"
         android:fontFamily="@font/roboto"
+        android:onClick="onClick"
         android:text="@string/forgot_password"
         android:textAppearance="@style/TextAppearance.MaterialComponents.Button"
         app:layout_constraintBottom_toBottomOf="parent"

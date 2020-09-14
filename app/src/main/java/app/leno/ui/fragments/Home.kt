@@ -6,7 +6,9 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.core.content.ContextCompat
 import androidx.lifecycle.ViewModelProvider
+import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import app.leno.R
 import app.leno.adapter.MainAdapter
@@ -14,7 +16,7 @@ import app.leno.data.Resource
 import app.leno.domain.UseCaseImpl
 import app.leno.model.ModelData
 import app.leno.repo.RepoImpl
-import app.leno.ui.activitys.NoteLayout
+import app.leno.ui.activity.NoteLayout
 import app.leno.ui.bases.BaseFragment
 import app.leno.viewmodel.DataVMFactory
 import app.leno.viewmodel.MainViewModel
@@ -44,11 +46,18 @@ class Home : BaseFragment(), MainAdapter.OnItemClickListener {
 
     }
 
+
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
 
+
+        val itemDecorator = DividerItemDecoration(context, DividerItemDecoration.VERTICAL)
+        itemDecorator.setDrawable(ContextCompat.getDrawable(requireContext(), R.drawable.divider)!!)
+
         adapter = MainAdapter(this)
         rv.layoutManager = LinearLayoutManager(activity, LinearLayoutManager.VERTICAL, false)
+        rv.addItemDecoration(itemDecorator)
+        rv.itemAnimator
         rv.adapter = adapter
         observerData()
 

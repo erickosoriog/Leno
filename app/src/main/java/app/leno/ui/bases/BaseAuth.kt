@@ -5,8 +5,8 @@ import android.util.Log
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import app.leno.R
-import app.leno.ui.activitys.Login
-import app.leno.ui.activitys.MainActivity
+import app.leno.ui.activity.Login
+import app.leno.ui.activity.MainActivity
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInClient
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions

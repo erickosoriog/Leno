@@ -1,19 +1,18 @@
-package app.leno.ui.activitys
+package app.leno.ui.activity
 
 import android.annotation.SuppressLint
 import android.content.Intent
 import android.os.Bundle
-import android.view.Menu
-import android.view.MenuItem
 import android.view.View
 import androidx.appcompat.widget.Toolbar
+import androidx.navigation.NavController
 import androidx.navigation.findNavController
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.navigateUp
-import androidx.navigation.ui.onNavDestinationSelected
 import androidx.navigation.ui.setupActionBarWithNavController
 import app.leno.R
+import app.leno.databinding.ActivityMainBinding
 import app.leno.ui.bases.BaseActivity
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.google.android.material.floatingactionbutton.FloatingActionButton
@@ -25,19 +24,22 @@ class MainActivity : BaseActivity(), ChipNavigationBar.OnItemSelectedListener {
 
     private lateinit var navView: ChipNavigationBar
     private lateinit var appBarConfiguration: AppBarConfiguration
+    private lateinit var navController: NavController
+    private lateinit var fab: FloatingActionButton
 
     @SuppressLint("InflateParams")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
-
-        navView = findViewById(R.id.nav_view)
+        val binding = ActivityMainBinding.inflate(layoutInflater)
+        setContentView(binding.root)
 
         val navHostFragment =
             supportFragmentManager.findFragmentById(R.id.nav_host_fragment) as NavHostFragment
-        val navController = navHostFragment.navController
 
-        val fab: FloatingActionButton = findViewById(R.id.fab)
+        navController = navHostFragment.navController
+        navView = binding.navView
+
+        fab = binding.appBarMain.contentMain.fab
         fab.setOnClickListener {
             // on click add DataRepo o floating button
 
@@ -60,7 +62,7 @@ class MainActivity : BaseActivity(), ChipNavigationBar.OnItemSelectedListener {
             }
         }
 
-        val toolbar: Toolbar = findViewById(R.id.toolbar)
+        val toolbar: Toolbar = binding.appBarMain.toolbar
         setSupportActionBar(toolbar)
 
         val appBarConfiguration = AppBarConfiguration(
@@ -78,19 +80,8 @@ class MainActivity : BaseActivity(), ChipNavigationBar.OnItemSelectedListener {
         overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out)
         val navController = findNavController(R.id.nav_host_fragment)
         if (navController.graph.startDestination == navController.currentDestination?.id!!) {
-            navView.setItemSelected(id = R.id.home, dispatchAction = true)
+            navView.setItemSelected(id = R.id.home)
         }
-    }
-
-    override fun onCreateOptionsMenu(menu: Menu): Boolean {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        menuInflater.inflate(R.menu.toolbar_navigation_menu, menu)
-        return true
-    }
-
-    override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        val navController = findNavController(R.id.nav_host_fragment)
-        return item.onNavDestinationSelected(navController) || super.onOptionsItemSelected(item)
     }
 
     override fun onSupportNavigateUp(): Boolean {
@@ -99,13 +90,6 @@ class MainActivity : BaseActivity(), ChipNavigationBar.OnItemSelectedListener {
     }
 
     override fun onItemSelected(id: Int) {
-
-        val navHostFragment =
-            supportFragmentManager.findFragmentById(R.id.nav_host_fragment) as NavHostFragment
-        val navController = navHostFragment.navController
-
-        val fab: FloatingActionButton = findViewById(R.id.fab)
-
         when (id) {
 
             R.id.home -> {
@@ -143,7 +127,7 @@ class MainActivity : BaseActivity(), ChipNavigationBar.OnItemSelectedListener {
             finish()
         } else if (navController.popBackStack()) {
             navController.navigate(R.id.Home)
-            navView.setItemSelected(id = R.id.home, dispatchAction = true)
+            navView.setItemSelected(id = R.id.home)
         }
     }
 

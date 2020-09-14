@@ -1,20 +1,20 @@
-package app.leno.ui.activitys
+package app.leno.ui.activity
 
 import android.content.Intent
 import android.os.Bundle
-import android.widget.Button
 import androidx.appcompat.app.AppCompatActivity
 import app.leno.R
+import app.leno.databinding.ActivityWelcomeBinding
 
 
 class Welcome : AppCompatActivity() {
 
-    private lateinit var loginWelcome: Button
-    private lateinit var registerWelcome: Button
+    private lateinit var binding: ActivityWelcomeBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_welcome)
+        binding = ActivityWelcomeBinding.inflate(layoutInflater)
+        setContentView(binding.root)
 
         clickBottoms()
 
@@ -27,8 +27,7 @@ class Welcome : AppCompatActivity() {
 
     private fun clickBottoms() {
 
-        loginWelcome = findViewById(R.id.login)
-        loginWelcome.setOnClickListener {
+        binding.loginWelcome.setOnClickListener {
 
             val intent = Intent(this, Login::class.java)
             startActivity(intent)
@@ -37,8 +36,8 @@ class Welcome : AppCompatActivity() {
                 R.anim.slide_out_left
             )
         }
-        registerWelcome = findViewById(R.id.register_login)
-        registerWelcome.setOnClickListener {
+
+        binding.registerWelcome.setOnClickListener {
 
             val intent = Intent(this, Register::class.java)
             startActivity(intent)

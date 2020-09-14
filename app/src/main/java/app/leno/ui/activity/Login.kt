@@ -1,11 +1,11 @@
-package app.leno.ui.activitys
+package app.leno.ui.activity
 
-import android.annotation.SuppressLint
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.View
 import app.leno.R
+import app.leno.databinding.ActivityLoginBinding
 import app.leno.ui.bases.BaseAuth
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.common.api.ApiException
@@ -13,11 +13,13 @@ import kotlinx.coroutines.launch
 
 class Login : BaseAuth(), View.OnClickListener {
 
-    @SuppressLint("RestrictedApi")
+    private lateinit var binding: ActivityLoginBinding
+
     override fun onCreate(savedInstanceState: Bundle?) {
         setTheme(R.style.AppThemeActionBar)
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_login)
+        binding = ActivityLoginBinding.inflate(layoutInflater)
+        setContentView(binding.root)
 
     }
 
@@ -25,6 +27,11 @@ class Login : BaseAuth(), View.OnClickListener {
         when (item?.id) {
             R.id.loginButton -> launch { loginUser() }
             R.id.googleButton -> launch { googleLogin() }
+            R.id.forgot_password -> {
+                val intent = Intent(this, ForgotPassword::class.java)
+                startActivity(intent)
+                finish()
+            }
         }
     }
 

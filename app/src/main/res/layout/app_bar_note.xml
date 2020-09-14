@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.activitys.NoteLayout">
+    tools:context=".ui.activity.NoteLayout">
 
     <com.google.android.material.appbar.AppBarLayout
         android:id="@+id/appBarLayout"
@@ -21,6 +21,7 @@
             <ImageButton
                 android:id="@+id/notes_back_btn"
                 android:layout_width="40dp"
+                android:onClick="onClick"
                 android:layout_height="40dp"
                 android:layout_marginTop="16dp"
                 android:layout_marginEnd="16dp"
@@ -64,6 +65,8 @@
 
     </com.google.android.material.appbar.AppBarLayout>
 
-    <include layout="@layout/content_note" />
+    <include
+        android:id="@+id/content_note"
+        layout="@layout/content_note" />
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

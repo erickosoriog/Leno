@@ -1,4 +1,4 @@
-package app.leno.ui.activitys
+package app.leno.ui.activity
 
 import android.content.ContentValues
 import android.content.Intent
@@ -7,22 +7,21 @@ import android.text.Editable
 import android.text.TextWatcher
 import android.text.util.Linkify
 import android.util.Log
+import android.view.View
 import android.widget.EditText
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import app.leno.R
+import app.leno.databinding.ActivityNoteLayoutBinding
 import app.leno.model.ModelData
 import com.google.firebase.Timestamp
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
-import kotlinx.android.synthetic.main.activity_note_layout.*
-import kotlinx.android.synthetic.main.app_bar_note.*
-import kotlinx.android.synthetic.main.content_note.*
 import java.text.DateFormat
 import java.util.*
 import kotlin.collections.HashMap
 
-class NoteLayout : AppCompatActivity() {
+class NoteLayout : AppCompatActivity(), View.OnClickListener {
 
     companion object {
         const val DATA_TEXT = "passed"
@@ -36,34 +35,44 @@ class NoteLayout : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_note_layout)
+        val binding = ActivityNoteLayoutBinding.inflate(layoutInflater)
+        setContentView(binding.root)
+
+        auth = FirebaseAuth.getInstance()
+        db = FirebaseFirestore.getInstance()
+        titleNote = binding.appBarNote.contentNote.inputNote
+        textNote = binding.appBarNote.contentNote.inputNote
+
 
         if (intent.extras != null) {
 
-            val text = intent.getParcelableExtra<ModelData>(DATA_TEXT)
-            created.text = text!!.date
-            InputNotesTittle.setText(text.title)
-            InputNote.setText(text.text)
+            val dataValue = intent.getParcelableExtra<ModelData>(DATA_TEXT)
+            binding.created.text = dataValue!!.date
+            titleNote.setText(dataValue.title)
+            textNote.setText(dataValue.text)
+
+        } else {
+
+            val calendar: Calendar = Calendar.getInstance()
+            val datenote: String =
+                DateFormat.getDateTimeInstance(DateFormat.MEDIUM, DateFormat.SHORT)
+                    .format(calendar.time)
+
+            binding.created.text = datenote
 
         }
 
-        titleNote = findViewById(R.id.InputNotesTittle)
-        textNote = findViewById(R.id.InputNote)
         textNote.autoLinkMask = Linkify.ALL
         textNote.movementMethod
         Linkify.addLinks(textNote, Linkify.WEB_URLS)
 
-        auth = FirebaseAuth.getInstance()
-        db = FirebaseFirestore.getInstance()
-
-        val calendar: Calendar = Calendar.getInstance()
-        val datenote: String = DateFormat.getDateTimeInstance(DateFormat.MEDIUM, DateFormat.SHORT)
-            .format(calendar.time)
-
-
-
         textNote.addTextChangedListener(object : TextWatcher {
-            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
+            override fun beforeTextChanged(
+                s: CharSequence?,
+                start: Int,
+                count: Int,
+                after: Int
+            ) {
 
             }
 
@@ -78,14 +87,14 @@ class NoteLayout : AppCompatActivity() {
             }
         })
 
-        notes_back_btn.setOnClickListener {
-            addNoteFireStore()
-        }
     }
 
-    override fun onStart() {
-        super.onStart()
-        overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out)
+    override fun onClick(item: View?) {
+        when (item?.id) {
+            R.id.notes_back_btn -> {
+                addNoteFireStore()
+            }
+        }
     }
 
     private fun addNoteFireStore() {
@@ -134,6 +143,7 @@ class NoteLayout : AppCompatActivity() {
     override fun onBackPressed() {
         super.onBackPressed()
         val intent = Intent(this, MainActivity::class.java)
+        overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out)
         startActivity(intent)
         finish()
     }

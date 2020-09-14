@@ -3,8 +3,8 @@ package app.leno.startApp
 import android.content.ContentValues
 import android.content.Intent
 import android.util.Log
-import app.leno.ui.activitys.MainActivity
-import app.leno.ui.activitys.Welcome
+import app.leno.ui.activity.MainActivity
+import app.leno.ui.activity.Welcome
 import app.leno.ui.bases.BaseActivity
 import com.google.firebase.auth.FirebaseAuth
 
