@@ -1,7 +1,7 @@
 package app.leno.adapter
 
 import androidx.recyclerview.widget.DiffUtil
-import app.leno.model.ModelData
+import app.leno.data.model.ModelData
 
 class IDiffUtilCallBack : DiffUtil.ItemCallback<ModelData>() {
 

@@ -1,19 +1,22 @@
-package app.leno.model
+package app.leno.data.model
 
 import android.os.Parcel
 import android.os.Parcelable
 import com.google.firebase.Timestamp
 
 data class ModelData(
-    val imageUrl: String? = null,
-    val title: String? = null,
-    val text: String? = null,
-    val date: String? = null,
-    val created: Timestamp? = null,
-    val type: Long? = 0
-) : Parcelable {
 
+    var id: String? = null,
+    var date: String? = null,
+    var title: String? = null,
+    var text: String? = null,
+    var imageUrl: String? = null,
+    var created: Timestamp? = null,
+    var type: Long? = 0
+
+) : Parcelable {
     constructor(parcel: Parcel) : this(
+        parcel.readString(),
         parcel.readString(),
         parcel.readString(),
         parcel.readString(),
@@ -23,10 +26,11 @@ data class ModelData(
     )
 
     override fun writeToParcel(parcel: Parcel, flags: Int) {
-        parcel.writeString(imageUrl)
+        parcel.writeString(id)
+        parcel.writeString(date)
         parcel.writeString(title)
         parcel.writeString(text)
-        parcel.writeString(date)
+        parcel.writeString(imageUrl)
         parcel.writeParcelable(created, flags)
         parcel.writeValue(type)
     }

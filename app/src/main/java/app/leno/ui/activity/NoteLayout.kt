@@ -12,8 +12,8 @@ import android.widget.EditText
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import app.leno.R
+import app.leno.data.model.ModelData
 import app.leno.databinding.ActivityNoteLayoutBinding
-import app.leno.model.ModelData
 import com.google.firebase.Timestamp
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
@@ -29,7 +29,9 @@ class NoteLayout : AppCompatActivity(), View.OnClickListener {
 
     private lateinit var auth: FirebaseAuth
     private lateinit var db: FirebaseFirestore
-    private var firebaseUserID: String = ""
+    private lateinit var firebaseUserID: String
+    private lateinit var documentUserID: String
+    private lateinit var dataValue: ModelData
     private lateinit var titleNote: EditText
     private lateinit var textNote: EditText
 
@@ -40,16 +42,23 @@ class NoteLayout : AppCompatActivity(), View.OnClickListener {
 
         auth = FirebaseAuth.getInstance()
         db = FirebaseFirestore.getInstance()
-        titleNote = binding.appBarNote.contentNote.inputNote
+        firebaseUserID = auth.currentUser?.uid.toString()
+        titleNote = binding.appBarNote.contentNote.inputNotesTittle
         textNote = binding.appBarNote.contentNote.inputNote
 
 
         if (intent.extras != null) {
 
-            val dataValue = intent.getParcelableExtra<ModelData>(DATA_TEXT)
-            binding.created.text = dataValue!!.date
+            dataValue = intent.getParcelableExtra(DATA_TEXT)!!
+            binding.created.text = dataValue.date
             titleNote.setText(dataValue.title)
             textNote.setText(dataValue.text)
+            documentUserID = dataValue.id.toString()
+
+
+            binding.appBarNote.notesBackBtn.setOnClickListener {
+                updateData(id = documentUserID)
+            }
 
         } else {
 
@@ -112,22 +121,28 @@ class NoteLayout : AppCompatActivity(), View.OnClickListener {
         val documentHashMap = HashMap<String, Any>()
         documentHashMap["created"] = Timestamp.now()
 
-        firebaseUserID = auth.currentUser!!.uid
+        val documentID =
+            db.collection("UsersNotes").document(firebaseUserID).collection("DataRepo and Folders")
+                .document().id
+
+
         val userHashMap = HashMap<String, Any>()
         userHashMap["created"] = Timestamp.now()
         userHashMap["date"] = date
+        userHashMap["id"] = documentID
         userHashMap["title"] = title
         userHashMap["text"] = text
         userHashMap["type"] = 0
 
         db.collection("UsersNotes").document(firebaseUserID).set(documentHashMap)
         db.collection("UsersNotes").document(firebaseUserID).collection("DataRepo and Folders")
-            .add(userHashMap)
+            .document(documentID)
+            .set(userHashMap)
             .addOnSuccessListener { documentReference ->
 
                 Log.d(
                     ContentValues.TAG,
-                    "DocumentSnapshot written with ID: ${documentReference.id}"
+                    "DocumentSnapshot written with ID: $documentReference"
                 )
                 Toast.makeText(this, "Note add success", Toast.LENGTH_LONG).show()
                 startActivity(Intent(this, MainActivity::class.java))
@@ -137,6 +152,41 @@ class NoteLayout : AppCompatActivity(), View.OnClickListener {
             .addOnFailureListener { e ->
                 Log.d(ContentValues.TAG, "Error adding document", e)
             }
+
+    }
+
+    private fun updateData(id: String) {
+
+        var title: String = titleNote.text.toString().trim()
+        if (title.isEmpty()) {
+            title = "Untitled"
+        }
+
+        val text: String = textNote.text.toString()
+        val calendar: Calendar = Calendar.getInstance()
+        val date: String = DateFormat.getDateTimeInstance(DateFormat.MEDIUM, DateFormat.SHORT)
+            .format(calendar.time)
+
+
+        val document = db.collection("UsersNotes").document(firebaseUserID)
+            .collection("DataRepo and Folders").document(id)
+
+        val userHashMap = HashMap<String, Any>()
+        userHashMap["created"] = Timestamp.now()
+        userHashMap["date"] = date
+        userHashMap["title"] = title
+        userHashMap["text"] = text
+        userHashMap["type"] = 0
+
+        document.update(userHashMap).addOnSuccessListener { documentReference ->
+
+            Log.d(ContentValues.TAG, "DocumentSnapshot written with ID: $documentReference")
+            startActivity(Intent(this, MainActivity::class.java))
+            finish()
+
+        }.addOnFailureListener { e ->
+            Log.d(ContentValues.TAG, "Error adding document", e)
+        }
 
     }
 

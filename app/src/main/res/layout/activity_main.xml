@@ -26,6 +26,7 @@
         android:layout_gravity="bottom"
         android:background="@color/white"
         android:elevation="8dp"
+        android:fitsSystemWindows="true"
         android:gravity="center"
         android:hapticFeedbackEnabled="true"
         app:cnb_menuResource="@menu/bottom_navigation_menu"

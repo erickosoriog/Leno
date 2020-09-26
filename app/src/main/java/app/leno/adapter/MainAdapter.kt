@@ -6,10 +6,12 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import app.leno.R
-import app.leno.model.ModelData
+import app.leno.data.model.ModelData
 import kotlinx.android.synthetic.main.items_view_text.view.*
 
-class MainAdapter(private val itemClickListener: OnItemClickListener) :
+class MainAdapter(
+    private val itemClickListener: OnItemClickListener
+) :
     ListAdapter<ModelData, RecyclerView.ViewHolder>(IDiffUtilCallBack()) {
 
     companion object {
@@ -19,12 +21,11 @@ class MainAdapter(private val itemClickListener: OnItemClickListener) :
     }
 
     interface OnItemClickListener {
-        fun onClick(adapterPosition: ModelData)
+        fun onClick(item: ModelData)
     }
 
     inner class NoteViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         fun bindView(user: ModelData) {
-            itemView.setOnClickListener { itemClickListener.onClick(getItem(adapterPosition)) }
             itemView.title_items.text = user.title
             itemView.date_items.text = user.date
         }
@@ -32,7 +33,6 @@ class MainAdapter(private val itemClickListener: OnItemClickListener) :
 
     inner class FolderViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         fun bindView(user: ModelData) {
-            itemView.setOnClickListener { itemClickListener.onClick(getItem(adapterPosition)) }
             itemView.title_items.text = user.title
             itemView.date_items.text = user.date
         }
@@ -66,6 +66,8 @@ class MainAdapter(private val itemClickListener: OnItemClickListener) :
                 holder.bindView(item)
             }
         }
+
+        holder.itemView.setOnClickListener { itemClickListener.onClick(item) }
 
     }
 

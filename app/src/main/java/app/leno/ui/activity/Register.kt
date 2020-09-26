@@ -16,7 +16,6 @@ class Register : BaseAuth(), View.OnClickListener {
     private lateinit var binding: ActivityRegisterBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
-        setTheme(R.style.AppThemeActionBar)
         super.onCreate(savedInstanceState)
         binding = ActivityRegisterBinding.inflate(layoutInflater)
         setContentView(binding.root)

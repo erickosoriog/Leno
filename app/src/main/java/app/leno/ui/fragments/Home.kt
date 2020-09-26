@@ -2,9 +2,7 @@ package app.leno.ui.fragments
 
 import android.content.Intent
 import android.os.Bundle
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
 import android.widget.Toast
 import androidx.core.content.ContextCompat
 import androidx.lifecycle.ViewModelProvider
@@ -13,13 +11,13 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import app.leno.R
 import app.leno.adapter.MainAdapter
 import app.leno.data.Resource
+import app.leno.data.model.ModelData
+import app.leno.data.repo.RepoImpl
 import app.leno.domain.UseCaseImpl
-import app.leno.model.ModelData
-import app.leno.repo.RepoImpl
 import app.leno.ui.activity.NoteLayout
 import app.leno.ui.bases.BaseFragment
-import app.leno.viewmodel.DataVMFactory
 import app.leno.viewmodel.MainViewModel
+import app.leno.viewmodel.MainViewModelFactory
 import kotlinx.android.synthetic.main.fragment_home.*
 
 
@@ -30,26 +28,17 @@ class Home : BaseFragment(), MainAdapter.OnItemClickListener {
     private val viewModel by lazy {
         ViewModelProvider(
             this,
-            DataVMFactory(UseCaseImpl(RepoImpl()))
+            MainViewModelFactory(UseCaseImpl(RepoImpl()))
         ).get(MainViewModel::class.java)
     }
 
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-
-        baseFragment()
-
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_home, container, false)
-
+    override fun getLayout(): Int {
+        return R.layout.fragment_home
     }
 
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-
 
         val itemDecorator = DividerItemDecoration(context, DividerItemDecoration.VERTICAL)
         itemDecorator.setDrawable(ContextCompat.getDrawable(requireContext(), R.drawable.divider)!!)
@@ -99,9 +88,10 @@ class Home : BaseFragment(), MainAdapter.OnItemClickListener {
 
     }
 
-    override fun onClick(adapterPosition: ModelData) {
+    override fun onClick(item: ModelData) {
         val intent = Intent(activity, NoteLayout::class.java)
-        intent.putExtra(NoteLayout.DATA_TEXT, adapterPosition)
+        intent.putExtra(NoteLayout.DATA_TEXT, item)
         startActivity(intent)
+        activity?.finish()
     }
 }

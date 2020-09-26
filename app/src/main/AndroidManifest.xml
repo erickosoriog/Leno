@@ -19,11 +19,9 @@
             android:parentActivityName="app.leno.ui.activity.Login" />
         <activity
             android:name=".ui.activity.Register"
-            android:label=""
             android:parentActivityName="app.leno.ui.activity.Welcome" />
         <activity
             android:name=".ui.activity.Login"
-            android:label=""
             android:parentActivityName="app.leno.ui.activity.Welcome" />
         <activity android:name=".ui.activity.Welcome" />
         <activity android:name=".startApp.StateCurrentUser">

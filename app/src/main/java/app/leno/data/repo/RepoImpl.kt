@@ -1,22 +1,22 @@
-package app.leno.repo
+package app.leno.data.repo
 
 import android.content.ContentValues.TAG
 import android.util.Log
 import app.leno.data.Resource
-import app.leno.model.ModelData
+import app.leno.data.model.ModelData
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.firestore.ListenerRegistration
 import com.google.firebase.firestore.MetadataChanges
 import com.google.firebase.firestore.Query
 import kotlinx.coroutines.ExperimentalCoroutinesApi
-import kotlinx.coroutines.cancel
 import kotlinx.coroutines.channels.awaitClose
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.callbackFlow
 
 class RepoImpl : IRepo {
 
-    private var firebaseUserID: String = ""
+    private var firebaseUserID: String? = null
     private lateinit var auth: FirebaseAuth
 
     @ExperimentalCoroutinesApi
@@ -30,11 +30,11 @@ class RepoImpl : IRepo {
         val fireStoreDB = FirebaseFirestore
             .getInstance()
             .collection("UsersNotes")
-            .document(firebaseUserID)
+            .document(firebaseUserID!!)
             .collection("DataRepo and Folders")
             .orderBy("created", Query.Direction.DESCENDING)
 
-        val listenerData =
+        val listenerData: ListenerRegistration =
             fireStoreDB.addSnapshotListener(MetadataChanges.INCLUDE) { snapshot, error ->
 
                 if (error != null) {
@@ -50,6 +50,14 @@ class RepoImpl : IRepo {
 
                 if (snapshot != null) {
 
+                    for (document in snapshot) {
+                        val documentID = document.toObject(ModelData::class.java)
+                        documentID.id = document.id
+                        listData.add(documentID)
+                        Log.d(TAG, "documentID: ${document.id}")
+                        channel.offer(Resource.Success(listData))
+                    }
+
                     channel.offer(Resource.Success(snapshot.toObjects(ModelData::class.java)))
                     Log.d(TAG, "Current data in DataRepo and Folders: $listData")
 
@@ -62,7 +70,6 @@ class RepoImpl : IRepo {
 
         awaitClose {
             listenerData.remove()
-            cancel()
         }
 
     }

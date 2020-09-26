@@ -94,8 +94,8 @@ abstract class BaseAuth : AppCompatActivity(), CoroutineScope {
 
     private fun createdUserDB() {
 
-        val username: String = username.editText?.text.toString()
-        val email: String = email_register.editText?.text.toString()
+        val username: String = username.editText?.text.toString().trim()
+        val email: String = email_register.editText?.text.toString().trim()
 
         firebaseUserID = auth.currentUser!!.uid
         val documentUserMap = HashMap<String, Any>()
@@ -137,25 +137,26 @@ abstract class BaseAuth : AppCompatActivity(), CoroutineScope {
 
         auth = FirebaseAuth.getInstance()
 
-        val email: String = email_login.editText?.text.toString()
-        val password: String = password_login.editText?.text.toString()
+        val email: String = email_login.editText?.text.toString().trim()
+        val password: String = password_login.editText?.text.toString().trim()
 
         if (email.isEmpty()) {
 
             Toast.makeText(this, "Please enter email", Toast.LENGTH_LONG).show()
+            return
 
         }
 
         if (password.isEmpty()) {
 
             Toast.makeText(this, "Please enter password", Toast.LENGTH_LONG).show()
-
+            return
         }
 
         if (email.isEmpty() && password.isEmpty()) {
 
             Toast.makeText(this, "Please enter email and password", Toast.LENGTH_LONG).show()
-
+            return
         }
 
         if (email.isNotEmpty() && password.isNotEmpty()) {
@@ -169,7 +170,7 @@ abstract class BaseAuth : AppCompatActivity(), CoroutineScope {
                 updateUiLogin(user)
 
             } catch (e: Exception) {
-
+                Toast.makeText(this, "error : ${e.message}", Toast.LENGTH_SHORT).show()
                 updateUiLogin(null)
             }
         }
@@ -178,7 +179,6 @@ abstract class BaseAuth : AppCompatActivity(), CoroutineScope {
 
     private fun updateUiLogin(currentUser: FirebaseUser?) {
         if (currentUser != null) {
-
             if (currentUser.isEmailVerified) {
 
                 Log.d("loginWithEmail", "signInWithEmail:success")

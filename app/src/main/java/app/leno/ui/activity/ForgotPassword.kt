@@ -4,25 +4,23 @@ import android.content.Intent
 import android.os.Bundle
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import app.leno.R
 import app.leno.databinding.ActivityForgotPasswordBinding
 import com.google.firebase.auth.FirebaseAuth
-import kotlinx.android.synthetic.main.activity_forgot__password.*
 
 class ForgotPassword : AppCompatActivity() {
 
     private lateinit var auth: FirebaseAuth
+    private lateinit var binding: ActivityForgotPasswordBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
-        setTheme(R.style.AppThemeActionBar)
         super.onCreate(savedInstanceState)
-        val binding = ActivityForgotPasswordBinding.inflate(layoutInflater)
+        binding = ActivityForgotPasswordBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
         auth = FirebaseAuth.getInstance()
 
 
-        binding.resetPassword?.setOnClickListener {
+        binding.resetPassword.setOnClickListener {
             resetPassword()
 
         }
@@ -35,7 +33,7 @@ class ForgotPassword : AppCompatActivity() {
 
     private fun resetPassword() {
 
-        val email: String = email_reset_password.editText?.text.toString()
+        val email: String = binding.emailResetPassword.editText?.text.toString()
 
         if (email.isEmpty()) {
 

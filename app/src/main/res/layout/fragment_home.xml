@@ -34,10 +34,14 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_gravity="top"
+            android:clickable="true"
+            android:focusableInTouchMode="true"
+            android:clipToPadding="true"
+            android:focusable="true"
             android:foregroundGravity="center"
             android:nestedScrollingEnabled="false"
             android:overScrollMode="never"
-            android:paddingBottom="70dp" />
+            android:paddingBottom="@dimen/dimen_80" />
 
     </androidx.core.widget.NestedScrollView>
 

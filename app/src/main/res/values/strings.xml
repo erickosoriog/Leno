@@ -5,8 +5,9 @@
     // Authentication
 
     <string name="welcome_auth">¡Welcome To Leno!</string>
-    <string name="login">login</string>
-    <string name="register">register</string>
+    <string name="terms">By continuing you agree the <a href="https://write.as/62kmr27x69r61uwr.md">Terms of service</a> and <a href="https://write.as/tub38gppyayotiyh.md">Privacy policy.</a></string>
+    <string name="login">continue</string>
+    <string name="create_account">create account</string>
 
     // Bottom navigation bar item titles
 
@@ -32,17 +33,25 @@
     <string name="folder">Folder</string>
     <string name="note_fab_bottom">Note</string>
     <string name="settings">Settings</string>
-    <string name="forgot_msg">Please enter the email with which you registered and want to recover your password, the instructions will be sent to the email.</string>
+    <string name="forgot_msg">Please enter your registration email to reset the password, the instructions will be sent to your email.</string>
     <string name="email">E-mail</string>
     <string name="reset_password">Reset password</string>
-    <string name="welcome_back">¡Welcome Back!</string>
+    <string name="sign_in_title">Hello,\nWelcome Back!</string>
+    <string name="sign_up_title">Create\naccount</string>
     <string name="password">Password</string>
-    <string name="or">or</string>
     <string name="login_with_google">Login with google</string>
     <string name="forgot_password">Forgot password?</string>
+    <string name="forgot_password_title">Forgot \npassword</string>
     <string name="user_name">User name</string>
     <string name="Calendar">Calendar</string>
     <string name="enter_title">Enter title</string>
+    <string name="register_msg">Don\'t have a account ? sign up</string>
+    <string name="sign_in_continue">SIGN IN TO YOUR ACCOUNT</string>
+    <string name="sign_in">log in</string>
+    <string name="sign_up">sign up</string>
+    <string name="sing_up_msg">Continue for free</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
     <!-- Preference Titles -->
 
     <!-- Messages Preferences -->

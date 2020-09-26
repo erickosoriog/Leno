@@ -1,13 +1,11 @@
 package app.leno.ui.fragments
 
 import android.os.Bundle
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
 import app.leno.R
-import app.leno.ui.bases.BaseFragment
+import app.leno.ui.bases.BaseFragmentProfile
 
-class Profile : BaseFragment() {
+class Profile : BaseFragmentProfile() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -15,17 +13,8 @@ class Profile : BaseFragment() {
         logOut()
     }
 
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-
-        profile()
-
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_profile, container, false)
-
+    override fun getLayout(): Int {
+        return R.layout.fragment_profile
     }
-
 }
 

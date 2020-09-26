@@ -14,27 +14,22 @@
         <item name="bottomSheetDialogTheme">@style/AppBottomSheetDialogTheme</item>
     </style>
 
-    <style name="ActionBar" parent="Widget.AppCompat.ActionBar">
-        <item name="android:background">@color/white</item>
-        <item name="android:elevation">0dp</item>
-        <item name="windowNoTitle">true</item>
-        <item name="android:textAppearance">@style/TextAppearance.MaterialComponents.Headline6
-        </item>
-        <item name="android:textColor">@color/black</item>
-    </style>
-
     <!-- Base application theme with ActionBar. -->
-    <style name="AppThemeActionBar" parent="Theme.AppCompat.Light">
+    <style name="AppThemeActionBarCustom" parent="Theme.AppCompat.DayNight.NoActionBar">
         <!-- Customize your theme here. -->
         <item name="colorPrimary">@color/colorPrimary</item>
-        <item name="actionBarStyle">@style/ActionBar</item>
         <item name="android:windowBackground">@color/white</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorPrimary</item>
         <item name="android:navigationBarColor">@color/white</item>
-        <item name="android:statusBarColor">@color/white</item>
+        <item name="android:statusBarColor">@color/colorPrimary</item>
         <item name="bottomSheetDialogTheme">@style/AppBottomSheetDialogTheme</item>
     </style>
+
+    <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
+
+    <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
+
 
     // EditText
 
