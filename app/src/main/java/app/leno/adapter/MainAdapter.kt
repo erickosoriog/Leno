@@ -1,15 +1,16 @@
 package app.leno.adapter
 
+import android.content.Context
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
-import app.leno.R
 import app.leno.data.model.ModelData
-import kotlinx.android.synthetic.main.items_view_text.view.*
+import app.leno.databinding.FolderViewBinding
+import app.leno.databinding.NoteViewBinding
 
 class MainAdapter(
+    private val context: Context,
     private val itemClickListener: OnItemClickListener
 ) :
     ListAdapter<ModelData, RecyclerView.ViewHolder>(IDiffUtilCallBack()) {
@@ -21,20 +22,29 @@ class MainAdapter(
     }
 
     interface OnItemClickListener {
-        fun onClick(item: ModelData)
+        fun onClickNote(item: ModelData)
+        fun onclickFolder(item: ModelData)
     }
 
-    inner class NoteViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        fun bindView(user: ModelData) {
-            itemView.title_items.text = user.title
-            itemView.date_items.text = user.date
+    inner class NoteViewHolder(val binding: NoteViewBinding) :
+        RecyclerView.ViewHolder(binding.root) {
+        fun bindView(user: ModelData) = with(binding) {
+            binding.root.setOnClickListener { itemClickListener.onClickNote(getItem(adapterPosition)) }
+            include.titleItems.text = user.title
+            include.dateItems.text = user.date
         }
     }
 
-    inner class FolderViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        fun bindView(user: ModelData) {
-            itemView.title_items.text = user.title
-            itemView.date_items.text = user.date
+    inner class FolderViewHolder(val binding: FolderViewBinding) :
+        RecyclerView.ViewHolder(binding.root) {
+        fun bindView(user: ModelData) = with(binding) {
+            binding.root.setOnClickListener {
+                itemClickListener.onclickFolder(
+                    getItem(adapterPosition)
+                )
+            }
+            include.titleItems.text = user.title
+            include.dateItems.text = user.date
         }
     }
 
@@ -42,18 +52,18 @@ class MainAdapter(
         return when (viewType) {
 
             VIEW_TYPE_NOTE -> {
-                val view =
-                    LayoutInflater.from(parent.context).inflate(R.layout.note_view, parent, false)
+                val view = NoteViewBinding.inflate(LayoutInflater.from(context), parent, false)
                 NoteViewHolder(view)
+
             }
 
             VIEW_TYPE_FOLDER -> {
-                val view =
-                    LayoutInflater.from(parent.context).inflate(R.layout.folder_view, parent, false)
+                val view = FolderViewBinding.inflate(LayoutInflater.from(context), parent, false)
                 FolderViewHolder(view)
             }
-            else -> throw IllegalArgumentException("Invalid view type")
+            else -> throw IllegalArgumentException("Invalid View type")
         }
+
     }
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
@@ -66,9 +76,6 @@ class MainAdapter(
                 holder.bindView(item)
             }
         }
-
-        holder.itemView.setOnClickListener { itemClickListener.onClick(item) }
-
     }
 
     override fun getItemViewType(position: Int): Int {

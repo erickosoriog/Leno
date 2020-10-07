@@ -4,10 +4,11 @@
     <color name="colorPrimaryDark">#126C46</color>
     <color name="white">#FFFFFF</color>
     <color name="black">#111111</color>
-    <color name="black60">#99111111</color>
+    <color name="black_60">#99111111</color>
     <color name="black_12">#1F000000</color>
     <color name="blackgray">#303030</color>
     <color name="white_light">#EFEFEF</color>
     <color name="vector_background">#F5F5F5</color>
+    <color name="black_overlay">#66000000</color>
 
 </resources>

@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".ui.activity.Welcome">
+    tools:context=".presentation.welcome.Welcome">
 
 
     <TextView
@@ -111,7 +111,7 @@
         android:hint="@string/register_msg"
         android:onClick="onClick"
         android:textAppearance="@style/TextAppearance.MaterialComponents.Body2"
-        android:textColor="@color/black60"
+        android:textColor="@color/black_60"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
